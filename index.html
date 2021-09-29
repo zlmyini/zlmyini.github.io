@@ -71,6 +71,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Less-3-4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/29/Less-3-4/" class="article-date">
+  <time class="dt-published" datetime="2021-09-29T15:33:51.759Z" itemprop="datePublished">2021-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: Less 3~4<br>date: 2021-09-28 12:49:25<br>Categories:</p>
+<ul>
+<li><p>sqli-labs<br>tags:</p>
+</li>
+<li><p>web安全</p>
+</li>
+<li><p>sqli-labs</p>
+<hr>
+</li>
+</ul>
+<p>第二关：</p>
+<p>我们输入?id=1 and1=1,页面回显正常：</p>
+<p><img src="../images/image-20210929222147383.png" alt="image-20210929222147383"></p>
+<p>而当我们改为 and 1=2 时，这里会报错：</p>
+<p> <img src="../images/image-20210929222252888.png" alt="image-20210929222252888"></p>
+<p>说明这里存在数值注入，我们可以打开根目录的源文件验证一下：</p>
+<p><img src="../images/image-20210929222439668.png" alt="image-20210929222439668"></p>
+<p>这里id=$id,我们猜想正确，接下来就可以进行正常注入了，详细步骤参考第一关。</p>
+<hr>
+<p>第三关：</p>
+<p>输入？id=1’:</p>
+<p><img src="../images/image-20210929222902858.png" alt="image-20210929222902858"></p>
+<p>有报错，就说明单字符有戏，我们注释掉看看：</p>
+<p><img src="../images/image-20210929223412686.png" alt="image-20210929223412686"></p>
+<p>发现依然报错，那我们就可以在‘上作文章，尝试在后面加上）：</p>
+<p><img src="../images/image-20210929223519087.png" alt="image-20210929223519087"></p>
+<p>好，再注释掉：</p>
+<p><img src="../images/image-20210929223604583.png" alt="image-20210929223604583"></p>
+<p>回显正常，说明此处是’）的注入，我们打开源文件验证：</p>
+<p><img src="../images/image-20210929223704234.png" alt="image-20210929223704234"></p>
+<p>接下来进行联合，爆破。</p>
+<hr>
+<p>第四关：</p>
+<p>本关使用  (“”)  的方式闭合字符串，然后可以优先使用联合查询注入：</p>
+<p><img src="../images/image-20210929224135650.png" alt="image-20210929224135650"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/09/29/Less-3-4/" data-id="cku5o6p6n0000pwui3isl15wm" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Less-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/09/29/Less-1/" class="article-date">
@@ -218,6 +282,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/09/29/Less-3-4/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/09/29/Less-1/">(no title)</a>
