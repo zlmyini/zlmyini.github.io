@@ -71,6 +71,102 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-攻防世界刷题笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-10-13T15:52:15.000Z" itemprop="datePublished">2021-10-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">-CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">攻防世界刷题笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><img src="../images/world.png" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/task">答题</a></p>
+<p><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/competition">竞赛</a></p>
+<p>第一关：</p>
+<p><img src="../images/image-20211014000010351.png" alt="image-20211014000010351"></p>
+<p>看题目描述，鼠标用不了，那就快捷键咯：</p>
+<p>打开场景链接：</p>
+<p><img src="../images/image-20211014000224214.png" alt="image-20211014000224214"></p>
+<p>那我们就ctrl+u或者f12:</p>
+<p><img src="../images/image-20211014000332856.png" alt="image-20211014000332856"></p>
+<p>flag 就是绿色的</p>
+<hr>
+<p>第二关：</p>
+<p><img src="../images/image-20211014000443393.png" alt="image-20211014000443393"></p>
+<p>打开项目地址：</p>
+<p>发现啥也没有，先想想，robots协议其实是我们访问每个网站第一个要查看的文件，它的存在就是一种约束，就是提醒哪些内容是不可爬取的。但也其实是一种道德层面的约束。</p>
+<p>我们在url 后加上robots.txt:</p>
+<p><img src="../images/image-20211014001133057.png" alt="image-20211014001133057"></p>
+<p>在把disallow复制得到flag：</p>
+<p> <img src="../images/image-20211014001336089.png" alt="image-20211014001336089"></p>
+<hr>
+<p>第三关：</p>
+<p><img src="../images/image-20211014001428606.png" alt="image-20211014001428606"></p>
+<p>备份文件，常见的备份文件后缀名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.git .svn .swp .~ .bak .bash_history</span><br></pre></td></tr></table></figure>
+
+<p>在url后加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php.bak</span><br></pre></td></tr></table></figure>
+
+<p>然后跳出源文件：</p>
+<p><img src="../images/image-20211014002032662.png" alt="image-20211014002032662"></p>
+<p>得到flag</p>
+<hr>
+<p>第四关：</p>
+<p><img src="../images/image-20211014002129043.png" alt="image-20211014002129043"></p>
+<p> Cookie是当主机访问Web服务器时，由 Web 服务器创建的，将信息存储在用户计算机上的文件。一般网络用户习惯用其复数形式  Cookies，指某些网站为了辨别用户身份、进行 Session 跟踪而存储在用户本地终端上的数据，而这些数据通常会经过加密处理。</p>
+<p>用火狐打开：</p>
+<p><img src="../images/image-20211014002555337.png" alt="image-20211014002555337"></p>
+<p>200是有响应的状态，404反之：</p>
+<p><img src="../images/image-20211014002720325.png" alt="image-20211014002720325"></p>
+<p>根据它的提示，url后加cookie.php，得flag：</p>
+<p><img src="../images/image-20211014003038473.png"></p>
+<hr>
+<p>第五关：</p>
+<p><img src="../images/image-20211014003229214.png" alt="image-20211014003229214"></p>
+<p>按不下去？查看器：</p>
+<p><img src="../images/image-20211014003625954.png" alt="image-20211014003625954"></p>
+<p>把disabled=“”删掉，按钮就可按了：</p>
+<p><img src="../images/image-20211014003742465.png" alt="image-20211014003742465"></p>
+<hr>
+<p>第六关：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" data-id="ckupqnl1v0000e0uigao03x70" data-title="攻防世界刷题笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Less7-10" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/01/Less7-10/" class="article-date">
@@ -549,7 +645,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/sqli-labs/">-sqli-labs</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">-CTF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqli-labs/">-sqli-labs</a></li></ul>
     </div>
   </div>
 
@@ -591,6 +687,10 @@
       <ul>
         
           <li>
+            <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">攻防世界刷题笔记</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/01/Less7-10/">Less7~10</a>
           </li>
         
@@ -604,10 +704,6 @@
         
           <li>
             <a href="/2021/09/29/Less-1-4/">Less 1~4</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/28/hello-world/">Hello World</a>
           </li>
         
       </ul>
