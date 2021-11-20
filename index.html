@@ -71,6 +71,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LSB隐写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2021-11-20T16:11:11.000Z" itemprop="datePublished">2021-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">-CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/21/LSB%E9%9A%90%E5%86%99/">LSB隐写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>  LSB隐写是信息隐写中最为经典的类型了，LSB全称为 least significant bit，是最低有效位的意思。通常在无损压缩或无压缩的图片上实现LSB隐写。如果是JPG格式的图片，就无法使用LSB隐写，因为JPG格式的图片对像素进行了有损压缩，我们修改的信息可能会在压缩的过程中被破坏。而PNG格式图片也对像素进行了压缩，不过是无损压缩，所以PNG格式是可以使用LSB的。还有就是BMP格式，这是没有进行压缩的，所以一般就会很大，可以进行LSB隐写。在CTF的题目中，一般也是用PNG格式图片来进行对LSB隐写的考察</p>
+<p><strong>隐写术简介</strong></p>
+<p>先简单的讲讲什么是隐写。由于我们识别声音或图片的能力有限，因此稍微改动信息的某一位是不会影响我们识别声音或图片的。隐写和加密之间的相同点就是，都是需要经过特殊的处理才能获得特定的信息。它们之间的不同点简单的说就是，加密的话会是一些奇怪的字符，或数据。隐写的话，就是信息明明就在眼前，但是你却视而不见。古人的藏头诗也是隐写的一种。</p>
+<p><img src="../images/image-20211121002126646.png" alt="image-20211121002126646"></p>
+<p>PNG格式图片中的像素一般由RGB三原色（红、绿、蓝）组成，每种颜色占8位，取值范围位0x00~0xFF,即有256中颜色。它一共包含256的3次方种颜色，即16777216种颜色。而人类的眼睛可以区分约1000万种不同的颜色，这就意味着人类无法区分剩下的6777216种颜色。</p>
+<p><img src="../images/2936952968-5b88d675e81b8_articlex.png" alt="图片描述"></p>
+<p>LSB隐写修改RGB颜色分量的最低位二进制,也就是最低有效位，而人类的眼睛不会注意到这前后的变化，因此每个像素可以携带3比特的信息，并且可以进行一些隐秘信息的传输。例如将最低有效位替换为0和1，然后将7或8位一组组成新的ASCII码：</p>
+<p><img src="../images/1411706368-5b88d6c5a7fc2_articlex.png" alt="图片描述"></p>
+<p>要寻找这种LSB隐藏痕迹，StegSolve这个工具可以辅助我们分析。</p>
+<img src="../images/image-20211121003659351.png" alt="image-20211121003659351" style="zoom:67%;" />
+
+<img src="../images/image-20211121003752808.png" alt="image-20211121003752808" style="zoom:67%;" />
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/21/LSB%E9%9A%90%E5%86%99/" data-id="ckw81dk0r0000sgui4knzh0hu" data-title="LSB隐写" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/misc/" rel="tag">-misc</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-simplerar" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/19/simplerar/" class="article-date">
@@ -89,7 +145,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/19/simplerar/">simplerar(简单密码学)</a>
+      <a class="p-name article-title" href="/2021/11/19/simplerar/">simplerar(信息隐写)</a>
     </h1>
   
 
@@ -134,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/19/simplerar/" data-id="ckw61eyxy0000tkuier33cy3r" data-title="simplerar(简单密码学)" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/19/simplerar/" data-id="ckw61eyxy0000tkuier33cy3r" data-title="simplerar(信息隐写)" class="article-share-link">Share</a>
       
       
       
@@ -817,7 +873,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/misc/" style="font-size: 10px;">-misc</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
+      <a href="/tags/autohotkey/" style="font-size: 10px;">-autohotkey</a> <a href="/tags/misc/" style="font-size: 15px;">-misc</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 20px;">-web安全</a>
     </div>
   </div>
 
@@ -839,7 +895,11 @@
       <ul>
         
           <li>
-            <a href="/2021/11/19/simplerar/">simplerar(简单密码学)</a>
+            <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/">LSB隐写</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/19/simplerar/">simplerar(信息隐写)</a>
           </li>
         
           <li>
@@ -852,10 +912,6 @@
         
           <li>
             <a href="/2021/10/01/Less7-10/">Less7~10</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/30/Less-5-6/">Less 5,6</a>
           </li>
         
       </ul>
