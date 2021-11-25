@@ -15,9 +15,9 @@
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
-<link rel="alternate" type="application/rss+xml" title="Fengyuan" href="http://example.com/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="Fengyuan" href="http://example.com/atom.xml" />
-<link rel="alternate" type="application/json" title="Fengyuan" href="http://example.com/feed.json" />
+<link rel="alternate" type="application/rss+xml" title="月十三" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="月十三" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="月十三" href="http://example.com/feed.json" />
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
@@ -33,7 +33,7 @@
 
   <title>
 simplerar(信息隐写) - -CTF |
-Yume Shoka = Fengyuan</title>
+Yume Shoka = 月十三</title>
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div id="loading">
@@ -102,12 +102,12 @@ Yume Shoka = Fengyuan</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitf0kl1j20zk0m87fe.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
         </ul>
       </div>
     </header>
@@ -147,7 +147,7 @@ Yume Shoka = Fengyuan</title>
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Fengyuan">
+    <meta itemprop="name" content="月十三">
   </span>
 
   <div class="body md" itemprop="articleBody">
@@ -172,20 +172,20 @@ Yume Shoka = Fengyuan</title>
 <p>好家伙，是个gif，那就回去把图片后缀改成.gif。</p>
 <p>在继续打开看看，然而任然是空白的。那现在就打开stegsolve(<em>图像隐写工具，支持使用不同方式解除图像隐写，是图像隐写的必备工具，当两张jpg图片外观、大小、像素都基本相同时，将两个文件的像素RGB值进行XOR、ADD、SUB等操作，看能否得到有用的信息。此工具的优点是简单方便，扩展性非常强，能进行批量自动化处理，对于自己编写的脚本，就可以方便的进行扩展</em>**)</p>
 <p>题目说是双图层，那我们点击Analyse里的frame browser(帧处理)发现有两张图，</p>
-<img data-src="../images/image-20211119144009939.png" alt="image-20211119144009939" style="zoom:67%;" />
+<img data-src="../images/image-20211119144009939.png" alt="image-20211119144009939" style="zoom:67%;">
 
 
 
 <p>分别保存为.png格式：</p>
 <p><img data-src="../images/image-20211119144039179.png" alt="image-20211119144039179"></p>
 <p>然后再分别在stegsolve打开这两个png图片,并调到 red plane 0，发现了两个一半的二维码：（按下面的“&gt;”）</p>
-<img data-src="../images/image-20211119144330578.png" alt="image-20211119144330578" style="zoom: 67%;" />
+<img data-src="../images/image-20211119144330578.png" alt="image-20211119144330578" style="zoom: 67%;">
 
-<img data-src="../images/image-20211119144522370.png" alt="image-20211119144522370" style="zoom:67%;" />
+<img data-src="../images/image-20211119144522370.png" alt="image-20211119144522370" style="zoom:67%;">
 
 <p>但这个上半部分的还是残缺的，没事，我们随便去网上找个二维码，把它左上角的裁下来，用ps拼上去：（先把上下部分都裁剪成矩形再分别保存，因为一开始它们都是方形的，空白部分是不需要的，然后再文件-&gt;新建-&gt;剪贴板，把刚刚剪好的两张图片拖进去使其尽量重合，其实有点bug关系不大，QR Research都可以扫出来，最后在补上左上角的就OK了）</p>
 <p>导出后保存为png，在QR Research（扫描二维码）中打开，得到flag：</p>
-<img data-src="../images/image-20211119145644631.png" alt="image-20211119145644631" style="zoom: 50%;" />
+<img data-src="../images/image-20211119145644631.png" alt="image-20211119145644631" style="zoom: 50%;">
 
       <div class="tags">
           <a href="/tags/misc/" rel="tag"><i class="ic i-tag"></i> -misc</a>
@@ -232,7 +232,7 @@ Yume Shoka = Fengyuan</title>
 <div id="copyright">
 <ul>
   <li class="author">
-    <strong>Post author:  </strong>zlmyini <i class="ic i-at"><em>@</em></i>Fengyuan
+    <strong>Post author:  </strong>zlmyini <i class="ic i-at"><em>@</em></i>月十三
   </li>
   <li class="link">
     <strong>Post link: </strong>
@@ -255,7 +255,7 @@ Yume Shoka = Fengyuan</title>
     <div class="item left">
       
 
-  <a href="/2021/11/17/autohotkey/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeuibk9fj20zk0m8ay2.jpg" title="autohotkey">
+  <a href="/2021/11/17/autohotkey/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevo9j1jj20zk0m8e81.jpg" title="autohotkey">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>autohotkey</h3>
@@ -265,7 +265,7 @@ Yume Shoka = Fengyuan</title>
     <div class="item right">
       
 
-  <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewf5l51j20zk0m8b29.jpg" title="LSB隐写">
+  <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm0fdw5cj20zk0m8hdt.jpg" title="LSB隐写">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> -CTF</span>
   <h3>LSB隐写</h3>
@@ -304,7 +304,7 @@ Yume Shoka = Fengyuan</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">10</span>
+        <span class="count">11</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -368,35 +368,6 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
-</div>
-
-    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
@@ -407,18 +378,10 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
   </li>
 
       
@@ -445,10 +408,19 @@ Yume Shoka = Fengyuan</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
-    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
+    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -459,6 +431,34 @@ Yume Shoka = Fengyuan</title>
 </div>
 
     <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/25/123/" title="123">123</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
   </li>
 
   </ul>
