@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -156,15 +156,16 @@ Yume Shoka = 月十三</title>
     <p>  LSB隐写是信息隐写中最为经典的类型了，LSB全称为 least significant bit，是最低有效位的意思。通常在无损压缩或无压缩的图片上实现LSB隐写。如果是JPG格式的图片，就无法使用LSB隐写，因为JPG格式的图片对像素进行了有损压缩，我们修改的信息可能会在压缩的过程中被破坏。而PNG格式图片也对像素进行了压缩，不过是无损压缩，所以PNG格式是可以使用LSB的。还有就是BMP格式，这是没有进行压缩的，所以一般就会很大，可以进行LSB隐写。在CTF的题目中，一般也是用PNG格式图片来进行对LSB隐写的考察</p>
 <p><strong>隐写术简介</strong></p>
 <p>先简单的讲讲什么是隐写。由于我们识别声音或图片的能力有限，因此稍微改动信息的某一位是不会影响我们识别声音或图片的。隐写和加密之间的相同点就是，都是需要经过特殊的处理才能获得特定的信息。它们之间的不同点简单的说就是，加密的话会是一些奇怪的字符，或数据。隐写的话，就是信息明明就在眼前，但是你却视而不见。古人的藏头诗也是隐写的一种。</p>
-<p><img data-src="../images/image-20211121002126646.png" alt="image-20211121002126646"></p>
+<p><img data-src="/images/image-20211121002126646.png" alt="image-20211121002126646"></p>
 <p>PNG格式图片中的像素一般由RGB三原色（红、绿、蓝）组成，每种颜色占8位，取值范围位0x00~0xFF,即有256中颜色。它一共包含256的3次方种颜色，即16777216种颜色。而人类的眼睛可以区分约1000万种不同的颜色，这就意味着人类无法区分剩下的6777216种颜色。</p>
-<p><img data-src="../images/2936952968-5b88d675e81b8_articlex.png" alt="图片描述"></p>
+<p><img data-src="/images/2936952968-5b88d675e81b8_articlex.png"></p>
 <p>LSB隐写修改RGB颜色分量的最低位二进制,也就是最低有效位，而人类的眼睛不会注意到这前后的变化，因此每个像素可以携带3比特的信息，并且可以进行一些隐秘信息的传输。例如将最低有效位替换为0和1，然后将7或8位一组组成新的ASCII码：</p>
-<p><img data-src="../images/1411706368-5b88d6c5a7fc2_articlex.png" alt="图片描述"></p>
+<p><img data-src="/images/1411706368-5b88d6c5a7fc2_articlex.png"></p>
 <p>要寻找这种LSB隐藏痕迹，StegSolve这个工具可以辅助我们分析。</p>
-<img data-src="../images/image-20211121003659351.png" alt="image-20211121003659351" style="zoom:67%;">
+<img data-src="/images/image-20211121003659351.png" alt="image-20211121003659351" style="zoom:67%;">
 
-<img data-src="../images/image-20211121003752808.png" alt="image-20211121003752808" style="zoom:67%;">
+<img data-src="/images/image-20211121003752808.png" alt="image-20211121003752808" style="zoom:67%;">
+
 
       <div class="tags">
           <a href="/tags/misc/" rel="tag"><i class="ic i-tag"></i> -misc</a>
@@ -179,7 +180,7 @@ Yume Shoka = 月十三</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2021-11-21 00:44:35" itemprop="dateModified" datetime="2021-11-21T00:44:35+08:00">2021-11-21</time>
+    <time title="Modified: 2021-11-26 20:59:58" itemprop="dateModified" datetime="2021-11-26T20:59:58+08:00">2021-11-26</time>
   </span>
 </div>
 
@@ -234,17 +235,17 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2021/11/17/autohotkey/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu1usa7j20zk0m8b29.jpg" title="autohotkey">
+  <a href="/2021/11/19/simplerar/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciusoyjnj219g0u0x56.jpg" title="simplerar(信息隐写)">
   <span class="type">Previous Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>autohotkey</h3>
+  <span class="category"><i class="ic i-flag"></i> -CTF</span>
+  <h3>simplerar(信息隐写)</h3>
   </a>
 
     </div>
     <div class="item right">
       
 
-  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipew8gmvyj20zk0m87wh.jpg" title="文件头标识大全(Winhex文件分析)">
+  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicljitigmj20zk0m87fp.jpg" title="文件头标识大全(Winhex文件分析)">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> -知识储存</span>
   <h3>文件头标识大全(Winhex文件分析)</h3>
@@ -269,7 +270,7 @@ Yume Shoka = 月十三</title>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
-          <li><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="bookmark" title="攻防世界刷题笔记">攻防世界刷题笔记</a></li><li class="active"><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" rel="bookmark" title="LSB隐写">LSB隐写</a></li>
+          <li><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="bookmark" title="攻防世界刷题笔记">攻防世界刷题笔记</a></li><li><a href="/2021/11/19/simplerar/" rel="bookmark" title="simplerar(信息隐写)">simplerar(信息隐写)</a></li><li class="active"><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" rel="bookmark" title="LSB隐写">LSB隐写</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="Overview">
@@ -283,7 +284,7 @@ Yume Shoka = 月十三</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">9</span>
+        <span class="count">10</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -320,7 +321,7 @@ Yume Shoka = 月十三</title>
   
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2021/11/17/autohotkey/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+        <a href="/2021/11/19/simplerar/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
@@ -347,10 +348,10 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
   </li>
 
       
@@ -367,18 +368,10 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
   </li>
 
       
@@ -388,7 +381,16 @@ Yume Shoka = 月十三</title>
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
   </li>
 
       
@@ -414,10 +416,10 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
-    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
   </li>
 
       
@@ -426,7 +428,17 @@ Yume Shoka = 月十三</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/11/25/123/" title="123">123</a></span>
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
   </li>
 
   </ul>
