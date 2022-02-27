@@ -24,15 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="-misc" />
+  <meta name="keywords" content="-kali命令" />
 
 
-<link rel="canonical" href="http://example.com/2021/11/19/simplerar/">
+<link rel="canonical" href="http://example.com/2022/02/27/convert/">
 
 
 
   <title>
-simplerar(信息隐写) - -CTF |
+convert |
 Yume Shoka = 月十三</title>
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,16 +60,16 @@ Yume Shoka = 月十三</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">simplerar(信息隐写)
+  <h1 itemprop="name headline">convert
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2021-11-19 13:53:49">
+  <span class="item" title="Created: 2022-02-27 13:17:35">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2021-11-19T13:53:49+08:00">2021-11-19</time>
+    <time itemprop="dateCreated datePublished" datetime="2022-02-27T13:17:35+08:00">2022-02-27</time>
   </span>
 </div>
 
@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
         </ul>
       </div>
     </header>
@@ -132,13 +132,11 @@ Yume Shoka = 月十三</title>
     
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
-<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/CTF/" itemprop="item" rel="index" title="In -CTF"><span itemprop="name">-CTF</span></a>
-<meta itemprop="position" content="1" /></span>
+<span><a href="/">Home</a></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/19/simplerar/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/27/convert/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -153,37 +151,14 @@ Yume Shoka = 月十三</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>第一次完整地做一次杂项：</p>
-<p><strong>题目：</strong></p>
-<p>菜狗最近学会了拼图，这是他刚拼好的，可是却搞错了一块(ps:双图层)</p>
-<p><img data-src="/images/image-20211119135704931.png"></p>
-<p>打开附件，是一个rar压缩文件，在本地解压后，却发现只得到一个flag.txt文件，打开果然是没让我们失望的“flag is not here”,那我们就无脑丢进winhex(用来检查和修复各种文件、恢复被删除文件、以及硬盘损坏造成的数据丢失等):</p>
-<p><img data-src="/images/image-20211119140405589.png"></p>
-<p>可依然没有什么隐写，那我们就只能对刚开始的rar文件做分析了，那就直接用winhex打开这个文件：</p>
-<p><img data-src="/images/image-20211119140945977.png"></p>
-<p>但到这里除了ctrl+f查找一下flag貌似就不能干什么了，但查找后也没有直接的flag，想到题目是双图层，那我们的解题才刚开始！</p>
-<p>那只能拿rar文件结构做文章了：</p>
-<p><strong>RAR 是有四个文件块组成的，分别是分别是标记块、归档头部块、文件块、结束块，这些块之间没有固定地先后顺序，但要求第一个块必须是标志块并且其后紧跟一个归档头部块</strong>:</p>
-<p><img data-src="/images/image-20211119141840218.png"></p>
-<p>查看winhex 中标记块和结束块都正常，通过上面的知识点我们可以发现png 的图<br>片压缩的文件头有问题，文件块的HEAD_TYPE 应该是0×74 而不是0x7A:</p>
-<p><img data-src="/images/image-20211119142330572.png"></p>
-<p>直接改成74就行了，然后保存文件，接着再把刚刚修复好的rar文件解压，打开发现变成了一个secret.png图片，但打开却是一片空白，佛了。那就在丢进winhex看看l咯：</p>
-<p><img data-src="/images/image-20211119142836621.png"></p>
-<p>好家伙，是个gif，那就回去把图片后缀改成.gif。</p>
-<p>在继续打开看看，然而任然是空白的。那现在就打开stegsolve(<em>图像隐写工具，支持使用不同方式解除图像隐写，是图像隐写的必备工具，当两张jpg图片外观、大小、像素都基本相同时，将两个文件的像素RGB值进行XOR、ADD、SUB等操作，看能否得到有用的信息。此工具的优点是简单方便，扩展性非常强，能进行批量自动化处理，对于自己编写的脚本，就可以方便的进行扩展</em>**)</p>
-<p>题目说是双图层，那我们点击Analyse里的frame browser(帧处理)发现有两张图，</p>
-<p><img data-src="/images/image-20211119144009939.png"></p>
-<p>分别保存为.png格式：</p>
-<p><img data-src="/images/image-20211119144039179.png"></p>
-<p>然后再分别在stegsolve打开这两个png图片,并调到 red plane 0，发现了两个一半的二维码：（按下面的“&gt;”）</p>
-<p><img data-src="/images/image-20211119144330578.png"></p>
-<p><img data-src="/images/image-20211119144522370.png"></p>
-<p>但这个上半部分的还是残缺的，没事，我们随便去网上找个二维码，把它左上角的裁下来，用ps拼上去：（先把上下部分都裁剪成矩形再分别保存，因为一开始它们都是方形的，空白部分是不需要的，然后再文件-&gt;新建-&gt;剪贴板，把刚刚剪好的两张图片拖进去使其尽量重合，其实有点bug关系不大，QR Research都可以扫出来，最后在补上左上角的就OK了）</p>
-<p>导出后保存为png，在QR Research（扫描二维码）中打开，得到flag：</p>
-<p><img data-src="/images/image-20211119145644631.png"></p>
+    <p>convert功能强大，用来批处理图片的放大、缩小、裁剪、旋转、合并、水印、拼接、格式转换等都非常方便，特别适合后台的图片处理。</p>
+<p>1，获取图片信息<br>$identify image.png<br>image.png PNG 559x559 559x559+0+0 8-bit sRGB 467KB 0.000u 0:00.008<br>如果只需要获取宽高：</p>
+<p>$identify -format “%wx%h” image.png<br>2，放大，缩小 -resize<br>$convert image.png -resize 200x200 resize.png<br>也可以按照比例（缩小一半）：</p>
+<p>$convert image.png -resize 50% resize.png<br>还可以多次缩放（先缩小一半，再放大一倍，效果就是变模糊了）：</p>
+<p>$convert image.png -resize 50%  -resize 200%  resize.png<br>3，放大，缩小 -sample<br>与resize的区别在于-sample只进行了采样，没有进行插值，所以用来生成缩略图最合适<br>$convert image.png -sample 50% sample.png<br>这个处理的效果就是马赛克：<br>$convert image.png -sample 10% -sample 1000% sample.png<br>4，裁剪 -crop<br>从（50，50）位置开始，裁剪一个100X100大小的图片：<br>$convert image.png -crop 100x100+50+50 crop.png<br>如果不指定位置，则按照这个大小分隔出小图片，这个命令生成crop-0.png，crop-1.png，crop-2.png……：<br>$convert image.png -crop 100x100 crop.png<br>可以指定裁剪位置的相对位置 -gravity：<br>$convert image.png -gravity northeast -crop 100x100+0+0 crop.png<br>-gravity即指定坐标原点，有northwest：左上角，north：上边中间，northeast：右上角，east：右边中间……<br>5，旋转 -rotate<br>$convert image.png -rotate 45 rotate.png<br>默认的背景为白色，我们可以指定背景色：<br>$convert image.png -backround black -rotate 45 rotate.png<br>$convert image.png -background #000000 -rotate 45 rotate.png<br>还可以指定为透明背景色：<br>$convert image.png -background rgba(0,0,0,0) -rotate 45 rotate.png<br>6，合并<br>合并指的是将一张图片覆盖到一个背景图片上：<br>$convert image.png -compose over overlay.png -composite newimage.png<br>-compose指定覆盖操作的类型，其中over为安全覆盖，另外还有xor、in、out、atop等等<br>覆盖的位置可以通过-gravity指定：<br>$convert image.png -gravity southeast -compose over overlay.png -composite newimage.png<br>这是将图片覆盖到底图的右下角。<br>7，更改图片的alpha通道<br>分两步：<br>$convert image.png -define png:format=png32  image32.png<br>$convert image32.png -channel alpha -fx “0.5” imagealpha.png<br>这个命令首先将image.png的格式改为png32（确保有alpha通道），然后更改alpha通道置为0.5，也就是半透明，值的范围为0到1.0<br>可以使用将一张透明图片覆盖到原图上的方式做水印图片：<br>$convert image.png -gravity center -compose over overlay.png -composite newimage.png<br>$convert image.png -gravity southeast -compose over overlay.png -composite newimage.png<br>8，拼接<br>横向拼接（+append），下对齐（-gravity south）：<br>$convert image1.png image2.png image3.png -gravity south +append result.png<br>纵向拼接（-append），右对齐（-gravity east）：<br>$convert image1.png image2.png image3.png -gravity east -append result.png<br>9，格式转换<br>$convert image.png image.jpg<br>$convert image.png -define png:format=png32 newimage.png<br>10，文字注释<br>$convert image.png -draw “text 0,20 ‘some text’” newimage.png<br>从文件text.txt中读取文字，指定颜色，字体，大小，位置：<br>$convert source.jpg -font xxx.ttf -fill red -pointsize 48 -annotate +50+50 @text.txt result.jpg<br>11，去掉边框<br>$convert image.png -trim -fuzz 10% newimage.png</p>
 
       <div class="tags">
-          <a href="/tags/misc/" rel="tag"><i class="ic i-tag"></i> -misc</a>
+          <a href="/tags/kali%E5%91%BD%E4%BB%A4/" rel="tag"><i class="ic i-tag"></i> -kali命令</a>
       </div>
   </div>
 
@@ -195,7 +170,7 @@ Yume Shoka = 月十三</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2021-11-25 22:22:23" itemprop="dateModified" datetime="2021-11-25T22:22:23+08:00">2021-11-25</time>
+    <time title="Modified: 2022-02-27 13:20:19" itemprop="dateModified" datetime="2022-02-27T13:20:19+08:00">2022-02-27</time>
   </span>
 </div>
 
@@ -231,7 +206,7 @@ Yume Shoka = 月十三</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2021/11/19/simplerar/" title="simplerar(信息隐写)">http://example.com/2021/11/19/simplerar/</a>
+    <a href="http://example.com/2022/02/27/convert/" title="convert">http://example.com/2022/02/27/convert/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -250,22 +225,14 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2021/11/17/autohotkey/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="autohotkey">
+  <a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu7txpzj20zk0m81kx.jpg" title="python爬虫-b站">
   <span class="type">Previous Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>autohotkey</h3>
+  <span class="category"><i class="ic i-flag"></i> -python</span>
+  <h3>python爬虫-b站</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexe4oykj20zk0m87ji.jpg" title="LSB隐写">
-  <span class="type">Next Post</span>
-  <span class="category"><i class="ic i-flag"></i> -CTF</span>
-  <h3>LSB隐写</h3>
-  </a>
-
     </div>
 </div>
 
@@ -284,9 +251,6 @@ Yume Shoka = 月十三</title>
       <div class="contents panel pjax" data-title="Contents">
       </div>
       <div class="related panel pjax" data-title="Related">
-        <ul>
-          <li><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="bookmark" title="攻防世界刷题笔记">攻防世界刷题笔记</a></li><li class="active"><a href="/2021/11/19/simplerar/" rel="bookmark" title="simplerar(信息隐写)">simplerar(信息隐写)</a></li><li><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" rel="bookmark" title="LSB隐写">LSB隐写</a></li>
-        </ul>
       </div>
       <div class="overview panel" data-title="Overview">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -336,12 +300,10 @@ Yume Shoka = 月十三</title>
   
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2021/11/17/autohotkey/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -363,68 +325,9 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
-</div>
-
-    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 </div>
 
     <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
-</div>
-
-    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
-</div>
-
-    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
   </li>
 
       
@@ -443,6 +346,34 @@ Yume Shoka = 月十三</title>
 <div class="breadcrumb">
 </div>
 
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
     <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
   </li>
 
@@ -453,7 +384,37 @@ Yume Shoka = 月十三</title>
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%AD%98/" title="In -知识储存">-知识储存</a>
+</div>
+
+    <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
   </li>
 
   </ul>
@@ -484,7 +445,7 @@ Yume Shoka = 月十三</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2021/11/19/simplerar/',
+    path: '2022/02/27/convert/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
