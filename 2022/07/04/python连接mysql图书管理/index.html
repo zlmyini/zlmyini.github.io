@@ -1,0 +1,608 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="月十三" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="月十三" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="月十三" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="-数据库连接" />
+
+
+<link rel="canonical" href="http://example.com/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/">
+
+
+
+  <title>
+python连接mysql图书管理 - -mysql |
+Yume Shoka = 月十三</title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">python连接mysql图书管理
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-07-04 17:48:03">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-07-04T17:48:03+08:00">2022-07-04</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/mysql/" itemprop="item" rel="index" title="In -mysql"><span itemprop="name">-mysql</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="zlmyini">
+    <meta itemprop="description" content=", Rise and shine">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="月十三">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>本次设计使用python语言进行对数据库的连接和管理。首先调用pumysql库连接本地mysql,进入我们建立的图书馆数据库libman。然后登录用户，进行我们的一系列操作：借阅/归还书籍、查询书籍、修改密码、添加/删除书籍（仅限管理员用户，普通学生用户不能进行该操作）。在删除或者添加书籍时books表会自动更新。借阅书籍时，logs表会添加记录，并设置借阅状态outline为“未归还”，当归还书籍后，logs表的该条记录会将状态outline设置为“已归还”。</p>
+<p><em><strong>*4.1 数据库libman表数据*</strong></em></p>
+<p>首先用mysql可视化工具dbeaver建立一个数据库libman，在该数据库下分别创建四个表，并自拟写入一些数据：</p>
+<p>学生信息表students：</p>
+<p><img data-src="/images/wps1.jpg" alt="img"> </p>
+<p>账户信息表admin：</p>
+<p><img data-src="/images/wps2.jpg" alt="img"> </p>
+<p>书籍信息表books：</p>
+<p><img data-src="/images/wps3.jpg" alt="img"> </p>
+<p>借阅记录表logs：有学生借阅时会自动添加。</p>
+<p><em><strong>*4*</strong></em><em><strong>*.*</strong></em><em><strong>*2*</strong></em> <em><strong>*python程序*</strong></em><em><strong>*功能模块*</strong></em><em><strong>*设计*</strong></em></p>
+<p>****1.登陆模块(login)：****输入账号和密码，调用系统自带的隐写模块(getpass)，隐写密码，输入次数超过三次退出系统，三次以内重新调用该模块，这些情况下返回数值0告诉main方法登陆状况，登陆成功则返回登陆用户名。</p>
+<p><em><strong>*2.*</strong></em>****菜单显示模块(menu):****此模块会调用角色获取模块，并通过调用系统的内置时间方法(time)获取当地时间并显示，并通过登陆模块(login)返回的用户名参数以及角色获取模块(get_role)返回的角色信息显示到程序主界面，读取输入的选择并返回给main函数的choice变量。</p>
+<p>****3.角色获取模块(get_role):****登陆成功后会调用此模块，通过登录模块(login)中输入的用户名搜索数据库得到他的角色，并返回角色名给菜单模块(menu),通过菜单模块(menu)打印在程序主界面。</p>
+<p>****4.密码修改模块(change_pwd):****只能修改当前用户的密码，先会要求输入原密码登陆才能进行修改，若错误超过三次，自动退出程序，若密码输入真确，则可修改密码，新密码要求输入两次已确认输入正确，最后将新密码存入数据库，当密码修改成功后则会要求重新登陆系统(登陆模块)。</p>
+<p>****5.图书查询模块(search_book):****通过传入书的作者，名称，编号等参数，在数据库中查询相关书籍，并返回查询结果(元组),若元组长度为零，则无此书，反之则遍历元组内的元素并打印。</p>
+<p>****6.借书还书模块(broww_back_book):****该模块属于总结性模块且要求用户选择是借书还是还书，然后分别调用借书模块(brrow_book)和还书模块(back_book)。</p>
+<p>****7.借书模块(brow_book):****输入学生学号或者姓名通过调用学生搜索方法(search_all_student)确认是否有这个学生,若存在这个学生，则调用显示所有书籍的方法(show_all_book)，然后让学生/管理员选择并输入图书的书名和编号后，通过数据库查询书名，书号，书的剩余本书，学号，通过内置的time方法获取借阅时间，然后将借阅记录存入数据库。</p>
+<p>****8.还书模块(reback_book):****输入学生学号或者姓名通过调用学生搜索方法(search_all_student)确认是否有这个学生,若存在这个学生，则调用显示所有书籍的方法(reback_book)，通过读取数据库中的log表获取这个学生所借阅的书籍并将编号存入book字典中，让用户选择归还那本书，用户归还后log表中的outline字段会显示已归还，books表中该书的had字段中书的数目加1。</p>
+<p>****9.书籍添加/删除模块(add_del_book):****该模块属于总结性模块且要求用户选择是加书还是删书，然后分别调用添加书籍模块(add_book)和删除书籍模块(del_book)，此模块只有在登录用户角色为管理员时才会在菜单方法(menu)中显示。</p>
+<p>****10.添加书籍模块(add_book):****用户输入图书的相关信息(书名，编号，作者，价格，拥有数量）后，打印在屏幕上，当用户确认无误后输入y确认，图书信息将会存入数据库中的books表中。</p>
+<p><em><strong>*1*</strong></em><em><strong>*1*</strong></em><em><strong>*.*</strong></em><em><strong>*删除*</strong></em>****书籍模块(add_book):****通过调用书记搜索(search_book)方法获取用户输入的要删除图书的相关信息并显示，若搜索没有所输入的书籍则返回没有相关书籍的提示，并返回上一级菜单，若搜索到相关书籍，通过输入书记的具体名字以及编号删除该书籍在数据库books表中的记录。</p>
+<p><em><strong>*5.课程设计结果*</strong></em></p>
+<p>以管理员身份为例执行结果（所有密码都是用getpass方法保护的不进行显示）</p>
+<p>运行python脚本，输入用户名和密码：</p>
+<img data-src="/images/wps4.jpg" alt="img" style="zoom:50%;"> 
+
+<p>登录成功显示：</p>
+<img data-src="/images/wps5.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>1)修改管理员密码：</p>
+<p>首先在用户表查看到用户zzh的密码是123456：</p>
+<img data-src="/images/wps6.jpg" alt="img" style="zoom:50%;"> 
+
+<p>选择1修改管理员密码：</p>
+<img data-src="/images/wps7.jpg" alt="img" style="zoom:50%;"> 
+
+<p>输入旧密码123456：</p>
+<p>设置新密码为44432452：</p>
+<img data-src="/images/wps8.jpg" alt="img" style="zoom:50%;"> 
+
+<img data-src="/images/wps9.jpg" alt="img" style="zoom:50%;"> 
+
+<p>回到数据库刷新查看，密码以及改变：</p>
+<img data-src="/images/wps10.jpg" alt="img" style="zoom:50%;"> 
+
+<p>2)图书查询：</p>
+<img data-src="/images/wps11.jpg" alt="img" style="zoom:50%;"> 
+
+<img data-src="/images/wps12.jpg" alt="img" style="zoom:50%;"> 
+
+<p>添加书籍：</p>
+<p>首先原书籍表信息：</p>
+<img data-src="/images/wps13.jpg" alt="img" style="zoom:50%;"> 
+
+<img data-src="/images/wps14.jpg" alt="img" style="zoom:50%;"> 
+
+<p>添加书籍：</p>
+<img data-src="/images/wps15.jpg" alt="img" style="zoom:50%;"> 
+
+<p>回到books表刷新查看到新书加入到信息表中：</p>
+<img data-src="/images/wps16.jpg" alt="img" style="zoom:50%;"> 
+
+<p>删除书籍：</p>
+<img data-src="/images/wps17.jpg" alt="img" style="zoom:50%;"> 
+
+<p>查看books表《adel》书籍信息消失：</p>
+<img data-src="/images/wps18.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>借阅书籍：</p>
+<p>先查看logs表中的借阅记录：</p>
+<img data-src="/images/wps19.jpg" alt="img" style="zoom:50%;"> 
+
+<p>只有一个学生号为3206021050的用户借阅《三体》的记录。接下来再借阅其他书籍（这里以《python大法好》为例）：</p>
+<img data-src="/images/wps20.jpg" alt="img" style="zoom:50%;"> 
+
+<img data-src="/images/wps21.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>我们设借阅25天（不超过30天）：</p>
+<img data-src="/images/wps22.jpg" alt="img" style="zoom:50%;"> 
+
+<p>回到logs表刷新查看：</p>
+<img data-src="/images/wps23.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>新的借阅记录被添加进去了，并且books中藏书量也减少1变为4本：</p>
+<img data-src="/images/wps24.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>归还书籍：</p>
+<img data-src="/images/wps25.jpg" alt="img" style="zoom:50%;"> 
+
+<img data-src="/images/wps26.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<img data-src="/images/wps27.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>查看logs表看到outline为“已归还”：</p>
+<img data-src="/images/wps28.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p>查看books表看到这本书的藏量+1：</p>
+<img data-src="/images/wps29.jpg" alt="img" style="zoom:50%;"> 
+
+ 
+
+<p><em><strong>源代码：</strong></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">import string</span><br><span class="line">import getpass</span><br><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">from datetime import date</span><br><span class="line">class book(object):#书籍类声明</span><br><span class="line">    name = None</span><br><span class="line">    author = None</span><br><span class="line">    id = None</span><br><span class="line">    price = 0.0</span><br><span class="line">    had = 0</span><br><span class="line">class student(object):#学生类声明</span><br><span class="line">    name = None</span><br><span class="line">    sno = None</span><br><span class="line">    sex = None</span><br><span class="line">    tel = None</span><br><span class="line">    major = None</span><br><span class="line">    classes = None</span><br><span class="line">def login():#登录模块</span><br><span class="line">    os.system(&#x27;cls&#x27;)</span><br><span class="line">    #连接本地mysql：</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor() #创建数据库游标对象对数据库进行具体的操作</span><br><span class="line">    uname = str(input(&quot;请输入用户名:&quot;))</span><br><span class="line">    pwd = str(getpass.getpass(&quot;请输入密码:&quot;))</span><br><span class="line">    r = cu.execute(&#x27;select account from admin where account = %s&#x27;,(uname))#execute()--执行sql语句</span><br><span class="line">    if r == 1:</span><br><span class="line">        re = cu.execute(&#x27;select pwd from admin where account = %s&#x27;,(uname))</span><br><span class="line">        upwd = cu.fetchmany()[0][0]#fetchmany()--从结果中取多条记录 </span><br><span class="line">        if pwd == upwd:</span><br><span class="line">            os.system(&#x27;cls&#x27;)#清屏</span><br><span class="line">            print(&#x27;登陆成功^_^&#x27;)</span><br><span class="line">            db.close()</span><br><span class="line">            time.sleep(1)</span><br><span class="line">            return uname</span><br><span class="line">        else:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            print(&#x27;用户名或密码错误。。。。&#x27;)</span><br><span class="line">            time.sleep(1)</span><br><span class="line">            return 0</span><br><span class="line">    else:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&quot;用户名或密码错误。。。。&quot;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        return 0</span><br><span class="line">def add_admin():#添加用户</span><br><span class="line">    account = input(&#x27;输入新用户名:&#x27;)</span><br><span class="line">    pwd = input(&#x27;输入新用户名的密码:&#x27;)</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    r = cu.execute(&#x27;select account from admin where account = %s&#x27;, (account))</span><br><span class="line">    if r == 0:</span><br><span class="line">        cu.execute(&quot;insert into admin(account,pwd) values(%s,%s)&quot;, (account,pwd))</span><br><span class="line">        print(&#x27;添加用户&#x27; + account + &#x27;成功&#x27;)</span><br><span class="line">        db.commit()</span><br><span class="line">        cu.close()</span><br><span class="line">        db.close()</span><br><span class="line">        time.sleep(1)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;用户名已存在。。&quot;)</span><br><span class="line">        db.close()</span><br><span class="line">        time.sleep(1)</span><br><span class="line">def search_book(bname):#图书查询</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset=&#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&quot;select * from books where bname LIKE &#x27;%&#123;&#125;%&#x27; or author LIKE &#x27;%&#123;&#125;%&#x27; or bnum like &#x27;&#123;&#125;&#x27;&quot;.format(bname,bname,bname))</span><br><span class="line">    return cu.fetchall()</span><br><span class="line">def search_student(sname):#查找学生对应信息</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&quot;select * from students where sname = &#x27;&#123;&#125;&#x27; or sno = &#x27;&#123;&#125;&#x27;&quot;.format(sname,sname))</span><br><span class="line">    return cu.fetchall()</span><br><span class="line">def add_del_book():#书籍添加/删除</span><br><span class="line">    print(&#x27;\t\t\t\t\t  1.添加书籍&#x27;)</span><br><span class="line">    print(&#x27;\t\t\t\t\t  2.删除书籍&#x27;)</span><br><span class="line">    print(&#x27;\t\t\t\t\t  3.返回上一页&#x27;)</span><br><span class="line">    choice = str(input(&quot;选择操作:&quot;))</span><br><span class="line">    if choice == &#x27;1&#x27;:</span><br><span class="line">        add_book()</span><br><span class="line">    elif choice == &#x27;2&#x27;:</span><br><span class="line">        del_book()</span><br><span class="line">    elif choice == &#x27;3&#x27;:</span><br><span class="line">        return 0</span><br><span class="line">    else:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;输入的选项有误，请重新输入&#x27;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        add_del_book()</span><br><span class="line">def add_book():#书籍添加</span><br><span class="line">    os.system(&#x27;cls&#x27;)</span><br><span class="line">    books = book()</span><br><span class="line">    books.name = str(input(&#x27;书籍名称:&#x27;))</span><br><span class="line">    books.author = str(input(&#x27;书籍作者:&#x27;))</span><br><span class="line">    books.id = str(input(&#x27;书籍编号:&#x27;))</span><br><span class="line">    books.price = str(input(&#x27;书籍价格:&#x27;))</span><br><span class="line">    books.had = int(input(&#x27;书籍本书:&#x27;))</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    if len(search_book(books.name)) == 0:</span><br><span class="line">        cu.execute(&#x27;insert into books(bname,author,bnum,bprices,had) values(%s,%s,%s,%s,%s)&#x27;,(&#x27;《&#x27; + books.name + &#x27;》&#x27;,books.author,books.id,books.price + &#x27;元&#x27;,str(books.had) + &#x27;本&#x27;))</span><br><span class="line">        print(&quot;书名:&quot; + books.name + &quot;\n作者:&quot; + books.author + &quot;\n编号:&quot; + books.id + &quot;\n价格:&quot; + books.price + &quot;\n剩余本书:&quot; + str(books.had) + &quot;\n&quot;)</span><br><span class="line">        ans = input(&#x27;\n确认无误(y/n):&#x27;)</span><br><span class="line">        if ans == &#x27;y&#x27; or ans == &#x27;Y&#x27;:</span><br><span class="line">            db.commit()</span><br><span class="line">            cu.close()</span><br><span class="line">            db.close()</span><br><span class="line">            print(&#x27;\n录入成功!!!&#x27;)</span><br><span class="line">            os.system(&#x27;pause&#x27;)#冻屏观察运行</span><br><span class="line">        else:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            add_del_book()</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;\n书籍已存在....&quot;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        add_del_book()</span><br><span class="line">def show_all_book():#显示所有书籍信息</span><br><span class="line">    os.system(&#x27;cls&#x27;)</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset=&#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&#x27;select * from books&#x27;)</span><br><span class="line">    for i in cu.fetchall():</span><br><span class="line">        print(&quot;书名:&quot; + i[0] + &quot;\n作者:&quot; + i[1] + &quot;\n编号:&quot; + i[2] + &quot;\n价格:&quot; + str(i[3]) + &quot;\n剩余本书:&quot; + str(i[4]) + &quot;\n&quot;)</span><br><span class="line">def del_book():#书籍删除</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    show_all_book()</span><br><span class="line">    books = str(input(&#x27;输入你想删除的书的书名:&#x27;))</span><br><span class="line">    re = search_book(books)</span><br><span class="line">    if len(re) != 0:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        for i in re:</span><br><span class="line">            print(&quot;书名:&quot; + i[0] + &quot;\n作者:&quot; + i[1] + &quot;\n编号:&quot; + i[2] + &quot;\n价格:&quot; + str(i[3]) + &quot;\n剩余本书:&quot; + str(i[4]) + &quot;\n&quot;)</span><br><span class="line">            ans = input(&#x27;\n确认删除(y/n):&#x27;)</span><br><span class="line">            if ans == &#x27;y&#x27; or ans == &#x27;Y&#x27;:</span><br><span class="line">                cu.execute(&quot;delete from books where bname like &#x27;《&#123;&#125;》&#x27;&quot;.format(books))</span><br><span class="line">                db.commit()</span><br><span class="line">                cu.close()</span><br><span class="line">                db.close()</span><br><span class="line">                print(&#x27;\n删除成功!!!&#x27;)</span><br><span class="line">                os.system(&#x27;pause&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;\n没有找到所输入的书籍。。。\n&#x27;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">def broww_back_book():#借阅/归还书籍</span><br><span class="line">    print(&#x27;\t\t\t\t\t  1.借阅书籍&#x27;)</span><br><span class="line">    print(&#x27;\t\t\t\t\t  2.归还书籍&#x27;)</span><br><span class="line">    print(&#x27;\t\t\t\t\t  3.返回上一页&#x27;)</span><br><span class="line">    choice = str(input(&quot;选择操作:&quot;))</span><br><span class="line">    if choice == &#x27;1&#x27;:</span><br><span class="line">        brow_book()</span><br><span class="line">    elif choice == &#x27;2&#x27;:</span><br><span class="line">        reback_book()</span><br><span class="line">    elif choice == &#x27;3&#x27;:</span><br><span class="line">        return 0</span><br><span class="line">    else:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;输入的选项有误，请重新输入&#x27;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        broww_back_book()</span><br><span class="line">def brow_book():#借阅书籍</span><br><span class="line">    student = str(input(&quot;输入学生的学号或姓名:&quot;))</span><br><span class="line">    sre = search_student(student)</span><br><span class="line">    if len(sre) != 0:</span><br><span class="line">        show_all_book()</span><br><span class="line">        books = input(&#x27;输入你想借阅的书籍的书名或编号:&#x27;)</span><br><span class="line">        bre = search_book(books)#bre返回元组类型，只含一个数组元素</span><br><span class="line">        db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                             port=3306,</span><br><span class="line">                             user=&#x27;root&#x27;,</span><br><span class="line">                             passwd=&#x27;root&#x27;,</span><br><span class="line">                             db=&#x27;libman&#x27;,</span><br><span class="line">                             charset = &#x27;utf8&#x27;</span><br><span class="line">                             )</span><br><span class="line">        cu = db.cursor()</span><br><span class="line">        if len(bre) != 0:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            if int(bre[0][4][:-1]) != 0:#书籍的本数</span><br><span class="line">                for i in bre:</span><br><span class="line">                    print(&quot;书名:&quot; + i[0] + &quot;\n作者:&quot; + i[1] + &quot;\n编号:&quot; + i[2] + &quot;\n价格:&quot; + str(i[3]) + &quot;\n剩余本书:&quot; + str(i[4]) + &quot;\n&quot;)</span><br><span class="line">                    ans = input(&#x27;\n确认借阅(y/n):&#x27;)</span><br><span class="line">                    if ans == &#x27;y&#x27; or ans == &#x27;Y&#x27;:</span><br><span class="line">                        while True:</span><br><span class="line">                            days = input(&quot;输入借阅天数(小于等于30天):&quot;)</span><br><span class="line">                            if days.isdigit() or (days &lt;= 30 and days &gt; 0):</span><br><span class="line">                                break</span><br><span class="line">                            else:</span><br><span class="line">                                print(&quot;输入天数不符合要求...&quot;)</span><br><span class="line">                        had = int(bre[0][4][:-1])</span><br><span class="line">                        bname = str(bre[0][0])</span><br><span class="line">                        bsno = str(sre[0][1])</span><br><span class="line">                        sname = str(sre[0][0])</span><br><span class="line">                        times = date.today()</span><br><span class="line">                        btime = times</span><br><span class="line">                        outline = &#x27;未归还&#x27;</span><br><span class="line">                        cu.execute(&#x27;insert into logs(bname,bsno,btime,howlong,outline) values (%s,%s,%s,%s,%s)&#x27;,(bname,bsno,str(times),str(days) + &#x27;天&#x27;,outline))</span><br><span class="line">                        cu.execute(&quot;update books set had = &#x27;&#123;&#125;&#x27; where bname = &#x27;&#123;&#125;&#x27;&quot;.format(str(had - 1)+&#x27;本&#x27;,bname))#借阅书籍books表藏书量减一</span><br><span class="line">                        db.commit()</span><br><span class="line">                        cu.close()</span><br><span class="line">                        db.close()</span><br><span class="line">                        print(&#x27;\n借阅成功!!!&#x27;)</span><br><span class="line">                        os.system(&#x27;pause&#x27;)</span><br><span class="line">                    else:</span><br><span class="line">                        os.system(&#x27;cls&#x27;)</span><br><span class="line">                        print(&#x27;\t\t\t\t\t图书借阅/归还&#x27;)</span><br><span class="line">                        broww_back_book()</span><br><span class="line">            else:</span><br><span class="line">                print(&quot;所选书籍已没有存库。。。抱歉。&quot;)</span><br><span class="line">                os.system(&#x27;cls&#x27;)</span><br><span class="line">                print(&#x27;\t\t\t\t\t图书借阅/归还&#x27;)</span><br><span class="line">                broww_back_book()</span><br><span class="line">        else:</span><br><span class="line">            print(&#x27;\n没有找到所输入的书籍。。。\n&#x27;)</span><br><span class="line">            time.sleep(1)</span><br><span class="line">            os.system(&#x27;pause&#x27;)</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            print(&#x27;\t\t\t\t\t图书借阅/归还&#x27;)</span><br><span class="line">            broww_back_book()</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;\n没有找到输入的学生。。。\n&#x27;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t\t图书借阅/归还&#x27;)</span><br><span class="line">        broww_back_book()</span><br><span class="line">def reback_book():#归还书籍</span><br><span class="line">    os.system(&#x27;cls&#x27;)</span><br><span class="line">    student = str(input(&quot;输入学生的学号或姓名:&quot;))</span><br><span class="line">    sre = search_student(student)</span><br><span class="line">    books = []</span><br><span class="line">    if len(sre) != 0:</span><br><span class="line">        bname = sre[0][0]</span><br><span class="line">        bsno = sre[0][1]</span><br><span class="line">        logs = show_stu_logs(bsno)</span><br><span class="line">        db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                             port=3306,</span><br><span class="line">                             user=&#x27;root&#x27;,</span><br><span class="line">                             passwd=&#x27;root&#x27;,</span><br><span class="line">                             db=&#x27;libman&#x27;,</span><br><span class="line">                             charset = &#x27;utf8&#x27;</span><br><span class="line">                             )</span><br><span class="line">        cu = db.cursor()</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        for log in logs:</span><br><span class="line">            cu.execute(&quot;select bnum from books where bname = &#x27;&#123;&#125;&#x27;&quot;.format(log[0]))</span><br><span class="line">            print(cu.fetchall())</span><br><span class="line">            print(&quot;借阅者:&#123;&#125;\n学号:&#123;&#125;\n借阅书籍:&#123;&#125;\n借阅时间:&#123;&#125;\n借阅时长:&#123;&#125;\n借阅状态:&#123;&#125;\n&quot;.format(bname,bsno,log[0],log[2],log[3],log[4]))</span><br><span class="line">            books.append(log[0])</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">        book = input(&#x27;输入要归还的书的书名或编号:&#x27;)</span><br><span class="line">        bre = search_book(book)  </span><br><span class="line">        had = int(bre[0][4][:-1])</span><br><span class="line">        cu.execute(&quot;select bname from books where bname = &#x27;&#123;&#125;&#x27; or bnum = &#x27;&#123;&#125;&#x27; or bname like &#x27;&#123;&#125;&#x27;&quot;.format(book,book,book))</span><br><span class="line">        print(cu.fetchall())</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">        if book in books:</span><br><span class="line">            cu.execute(&quot;update logs set outline = &#x27;已归还&#x27; where bname = &#x27;&#123;&#125;&#x27;  or bname like &#x27;&#123;&#125;&#x27;&quot;.format(book,book))</span><br><span class="line">            cu.execute(&quot;update books set had = &#x27;&#123;&#125;&#x27; where bname = &#x27;&#123;&#125;&#x27;&quot;.format(str(had + 1)+&#x27;本&#x27;,str(bre[0][0])))#归还书籍books表藏书量加一</span><br><span class="line">            print(&quot;归还成功！&quot;)</span><br><span class="line">        else:</span><br><span class="line">            pass</span><br><span class="line">    else:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;输入的学生信息有误。。。&#x27;)</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        broww_back_book()</span><br><span class="line">def show_stu_logs(sno):#显示该学生借阅信息</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset = &#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&quot;select * from logs where bsno = &#x27;&#123;&#125;&#x27;&quot;.format(sno))</span><br><span class="line">    return cu.fetchall()</span><br><span class="line">def change_pwd(a):#更改密码</span><br><span class="line">    i = 0</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&quot;select pwd from admin where account = &#x27;&#123;&#125;&#x27;&quot;.format(a))</span><br><span class="line">    oldpwd = cu.fetchall()</span><br><span class="line">    while i&lt;3:</span><br><span class="line">        pwd = str(getpass.getpass(&quot;请输入用户&#123;&#125;的密码:&quot;.format(a)))</span><br><span class="line">        if pwd == oldpwd[0][0]:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            while True:</span><br><span class="line">                pwd = str(getpass.getpass(&quot;请输入用户&#123;&#125;的新密码:&quot;.format(a)))</span><br><span class="line">                pwd1 = str(getpass.getpass(&quot;请再次输入用户&#123;&#125;的新密码:&quot;.format(a)))</span><br><span class="line">                if pwd == pwd1:</span><br><span class="line">                    cu.execute(&quot;update admin set pwd = &#x27;&#123;&#125;&#x27; where account = &#x27;&#123;&#125;&#x27;&quot;.format(pwd,a))</span><br><span class="line">                    db.commit()</span><br><span class="line">                    cu.close()</span><br><span class="line">                    db.close()</span><br><span class="line">                    os.system(&#x27;cls&#x27;)</span><br><span class="line">                    print(&#x27;管理员&#123;&#125;密码修改成功。。请重新登陆。&#x27;.format(a))</span><br><span class="line">                    os.system(&#x27;pause&#x27;)</span><br><span class="line">                    os.system(&#x27;cls&#x27;)</span><br><span class="line">                    login()</span><br><span class="line">                    break</span><br><span class="line">                else:</span><br><span class="line">                    os.system(&#x27;cls&#x27;)</span><br><span class="line">                    print(&quot;两次输入的密码不一致，请重新输入。。。&quot;)</span><br><span class="line">                    os.system(&#x27;pause&#x27;)</span><br><span class="line">                    os.system(&#x27;cls&#x27;)</span><br><span class="line">            break</span><br><span class="line">        else:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            print(&quot;输入管理员&#123;&#125;的密码错误。。&quot;.format(a))</span><br><span class="line">            os.system(&#x27;pause&#x27;)</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            i += 1</span><br><span class="line">    if i == 3:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&quot;多次错误。。。退出。。&quot;)</span><br><span class="line">        os.system(&#x27;pause&#x27;)</span><br><span class="line">        os._exit(0)</span><br><span class="line">def menu(role):#菜单</span><br><span class="line">    print(&quot;\t\t---------------------图书管理系统---------------------&quot;)</span><br><span class="line">    print(&quot;\t\t\t\t    by .adel &amp; 2316&quot;)</span><br><span class="line">    print(&#x27;\t\t\t\t      &#x27;+ str(date.today()))</span><br><span class="line">    if role != &#x27;student&#x27;:</span><br><span class="line">        print(&#x27;\t\t\t\t   1.修改管理员密码&#x27;) #增</span><br><span class="line">        print(&#x27;\t\t\t\t   2.图书查询&#x27;) #查</span><br><span class="line">        print(&#x27;\t\t\t\t   3.添加/删除 书籍&#x27;) #增,删</span><br><span class="line">        print(&#x27;\t\t\t\t   4.图书借阅/归还&#x27;) #增,改</span><br><span class="line">        print(&#x27;\t\t\t\t   5.退出&#x27;)</span><br><span class="line">        choice = input(&#x27;请选择:&#x27;)</span><br><span class="line">        return choice</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;\t\t\t\t   1.修改密码&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t   2.图书查询&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t   3.图书借阅/归还&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t   4.退出&#x27;)</span><br><span class="line">        choice = input(&#x27;请选择:&#x27;)</span><br><span class="line">        if choice == &#x27;4&#x27;:</span><br><span class="line">            choice = &#x27;5&#x27;</span><br><span class="line">        if choice == &#x27;3&#x27;:</span><br><span class="line">            choice = &#x27;4&#x27;</span><br><span class="line">        return choice</span><br><span class="line">def get_role(name):#用户角色信息获取</span><br><span class="line">    db = pymysql.connect(host=&#x27;localhost&#x27;,</span><br><span class="line">                         port=3306,</span><br><span class="line">                         user=&#x27;root&#x27;,</span><br><span class="line">                         passwd=&#x27;root&#x27;,</span><br><span class="line">                         db=&#x27;libman&#x27;,</span><br><span class="line">                         charset=&#x27;utf8&#x27;</span><br><span class="line">                         )</span><br><span class="line">    cu = db.cursor()</span><br><span class="line">    cu.execute(&quot;select role from admin where account = &#x27;&#123;&#125;&#x27;&quot;.format(name))</span><br><span class="line">    return cu.fetchall()[0][0]</span><br><span class="line">i = 0</span><br><span class="line">while i &lt; 3:</span><br><span class="line">    a = login()</span><br><span class="line">    if type(a) == str:</span><br><span class="line">        role = get_role(a)</span><br><span class="line">        break</span><br><span class="line">    else:</span><br><span class="line">        i += 1</span><br><span class="line">if i == 3:</span><br><span class="line">    os.system(&#x27;cls&#x27;)</span><br><span class="line">    print(&#x27;不知道密码就别猜啦。。。-_-&#x27;)</span><br><span class="line">    os._exit(0)</span><br><span class="line">os.system(&#x27;cls&#x27;)</span><br><span class="line">while True:</span><br><span class="line">    print(&#x27;当前登录用户:&#123;&#125;&#x27;.format(a))</span><br><span class="line">    print(&#x27;身份:&#123;&#125;&#x27;.format(role))</span><br><span class="line">    choice = menu(role)</span><br><span class="line">    if choice==&#x27;1&#x27;:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t\t管理员密码修改&#x27;)</span><br><span class="line">        change_pwd(a)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">    elif choice ==&#x27;2&#x27;:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t\t图书查询&#x27;)</span><br><span class="line">        bname = input(&#x27;输入书籍名称或者作者:&#x27;)</span><br><span class="line">        result = search_book(bname)</span><br><span class="line">        if len(result) != 0:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            for i in result:</span><br><span class="line">                print(&quot;书名:&quot; + i[0] + &quot;\n作者:&quot; + i[1] + &quot;\n编号:&quot; + i[2] + &quot;\n价格:&quot; + str(i[3]) + &quot;\n剩余本书:&quot; + str(i[4]) + &quot;\n&quot;)</span><br><span class="line">            os.system(&#x27;pause&#x27;)</span><br><span class="line">        else:</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            print(&#x27;没有相关的书籍。。。&#x27;)</span><br><span class="line">            time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">    elif choice ==&#x27;3&#x27;:</span><br><span class="line">        if role == &#x27;student&#x27;:</span><br><span class="line">            print(&#x27;输入的选项无效,请重新输入。。。&#x27;)</span><br><span class="line">            time.sleep(1)</span><br><span class="line">            os.system(&#x27;cls&#x27;)</span><br><span class="line">            continue</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t\t添加/删除 书籍&#x27;)</span><br><span class="line">        add_del_book()</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">    elif choice ==&#x27;4&#x27;:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&#x27;\t\t\t\t\t图书借阅/归还&#x27;)</span><br><span class="line">        broww_back_book()</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">    elif choice ==&#x27;5&#x27;:</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        print(&quot;正在退出。。。。&quot;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">        break</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;输入的选项无效,请重新输入。。。&#x27;)</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        os.system(&#x27;cls&#x27;)</span><br><span class="line">os.system(&#x27;exit&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+      <div class="tags">
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" rel="tag"><i class="ic i-tag"></i> -数据库连接</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-07-04 18:00:05" itemprop="dateModified" datetime="2022-07-04T18:00:05+08:00">2022-07-04</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="zlmyini WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="zlmyini Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="zlmyini PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>zlmyini <i class="ic i-at"><em>@</em></i>月十三
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/" title="python连接mysql图书管理">http://example.com/2022/07/04/python连接mysql图书管理/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicis3attqj20zk0m8k7l.jpg" title="win10管理员权限问题">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>win10管理员权限问题</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/" rel="bookmark" title="python连接mysql图书管理">python连接mysql图书管理</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="zlmyini"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">zlmyini</p>
+  <div class="description" itemprop="description">Rise and shine</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">16</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">5</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">8</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+  
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%AD%98/" title="In -知识储存">-知识储存</a>
+</div>
+
+    <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="In -python">-python</a>
+</div>
+
+    <span><a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" title="python爬虫-b站">python爬虫-b站</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" title="win10管理员权限问题">win10管理员权限问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="In -python">-python</a>
+</div>
+
+    <span><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" title="python报错">python报错</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zlmyini @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/07/04/python连接mysql图书管理/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
