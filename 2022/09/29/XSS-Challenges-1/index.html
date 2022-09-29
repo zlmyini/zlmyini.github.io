@@ -1,0 +1,551 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="月十三" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="月十三" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="月十三" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="--XSS" />
+
+
+<link rel="canonical" href="http://example.com/2022/09/29/XSS-Challenges-1/">
+
+
+
+  <title>
+XSS-Challenges(8-16) - --渗透测试 |
+Yume Shoka = 月十三</title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">XSS-Challenges(8-16)
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2022-09-29 18:37:34">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2022-09-29T18:37:34+08:00">2022-09-29</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="item" rel="index" title="In --渗透测试"><span itemprop="name">--渗透测试</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/29/XSS-Challenges-1/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="zlmyini">
+    <meta itemprop="description" content=", Rise and shine">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="月十三">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>Stage #8</p>
+<p><img data-src="/images/image-20220929184505310.png" alt="image-20220929184505310"></p>
+<p>输入普通js看看：</p>
+<p><img data-src="/images/image-20220929184708950.png" alt="image-20220929184708950"></p>
+<p>发现输入的”&gt;并不能闭合掉前面的标签，输什么都会变成链接名，所以度娘看看，在url执行js代码，用JavaScript伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">javascript:alert(document.domain)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/image-20220929185136388.png" alt="image-20220929185136388"></p>
+<p>Stage #9</p>
+<p><img data-src="/images/image-20220929190402452.png" alt="image-20220929190402452"></p>
+<p>老套路还是不行，这边有个隐藏框，编码euc-jp，是日文编码，抓包改成utf-8不行。要用可识别utf-7得到浏览器(IE7可以）才可以：</p>
+<p><img data-src="/images/image-20220929185841625.png" alt="image-20220929185841625"></p>
+<p>我的火狐是不行，所以改了也没过，编辑过了</p>
+<p>Stage #10</p>
+<p>试了几个，发现插入的domain就这个关键词会被过滤：</p>
+<p><img data-src="/images/image-20220929193543856.png" alt="image-20220929193543856"></p>
+<p><img data-src="/images/image-20220929193609047.png" alt="image-20220929193609047"></p>
+<p>然后尝试双写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;script&gt;alert(document.dodomainmain)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>他过滤掉中间的domain,剩下的前后又加起来变成domain:</p>
+<p><img data-src="/images/image-20220929193358436.png" alt="image-20220929193358436"></p>
+<p>Stage #11</p>
+<p>一片空白，做不了，网上说要用ie做。</p>
+<p>Stage #12</p>
+<p><img data-src="/images/image-20220929195748220.png" alt="image-20220929195748220"></p>
+<p>输入之后直接过滤掉&lt;和&gt;，那就用没有&lt;&gt;的语句。</p>
+<p>用on事件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot; onclick=alert(document.domain)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/image-20220930001103655.png" alt="image-20220930001103655"></p>
+<p>额，”也过滤了</p>
+<p>反引号 <strong>`</strong> 来绕过对引号的限制，并添加事件绕过对标签符号的限制</p>
+<p>```onmouseover=alert(document.domain)` 且只能在IE浏览器中成功实现</p>
+<p>Stage #13</p>
+<p>和12一样，要在ie浏览器中，</p>
+<p><strong>CSS特性讲解</strong><br>background:url(“javascript:alert(document.domain)”) 设置背景颜色<br>设置background:url ，利用javascript伪协议执行js。目前IE浏览器支持，其他浏览器已经不再支持</p>
+<p>Stage #14</p>
+<p>和第十三关类似，不过在使用相同的代码后在浏览器控制台中发现url变成了xxx<br>找到hint部分的提示，发现是网页对这些关键词进行了过滤<br>因此尝试插入反斜杠或者注释符号来绕过<br>绕过方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">backround:ur/**/l(alert(document.domain)) </span><br></pre></td></tr></table></figure>
+
+<p>通过在关键词之间添加注释符号的方法来绕过替换；同样只能在IE浏览器中实现</p>
+<p>Stage #15</p>
+<p><img data-src="/images/image-20220930010652480.png" alt="image-20220930010652480"></p>
+<p>“和&lt;&gt;分别被转义成：&amp;quot、&amp;gt、&amp;lt</p>
+<p>把这些特殊符号转换成16进制：</p>
+<p>“：0x22</p>
+<p>&lt;：0x3c  &gt;:0x3e</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x220x3e0x3cscript0x3ealert(document.domain)0x3c/script0x3e</span><br></pre></td></tr></table></figure>
+
+<p>还是不行，</p>
+<p>把0x3c和0x3e转换成浏览器能识别的\x3c和\x3e</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\x22\x3e\x3cscript\x3ealert(document.domain)\x3c/script\x3e</span><br></pre></td></tr></table></figure>
+
+<img data-src="/images/image-20220930011344561.png" alt="image-20220930011344561" style="zoom:80%;">
+
+<p>\被过滤了，尝试双斜杆：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\x22\\x3e\\x3cscript\\x3ealert(document.domain)\\x3c/script\\x3e</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/images/image-20220930011545241.png" alt="image-20220930011545241"></p>
+<p>过关！</p>
+<p><strong>总结：</strong></p>
+<p>特殊字符转义：特殊字符转换成16进制或者ascii等</p>
+<p>直接过滤某种字符：双写</p>
+<p>Stage #16</p>
+<p>页面打不开</p>
+
+      <div class="tags">
+          <a href="/tags/XSS/" rel="tag"><i class="ic i-tag"></i> --XSS</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2022-09-30 01:30:21" itemprop="dateModified" datetime="2022-09-30T01:30:21+08:00">2022-09-30</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="zlmyini WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="zlmyini Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="zlmyini PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>zlmyini <i class="ic i-at"><em>@</em></i>月十三
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2022/09/29/XSS-Challenges-1/" title="XSS-Challenges(8-16)">http://example.com/2022/09/29/XSS-Challenges-1/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2022/09/28/XSS-Challenges/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipet4bz0yj20zk0m8e81.jpg" title="XSS Challenges(1-7)">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> --渗透测试</span>
+  <h3>XSS Challenges(1-7)</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2022/09/06/DNS%E5%9F%9F%E5%90%8D%E5%8A%AB%E6%8C%81/" rel="bookmark" title="DNS域名劫持">DNS域名劫持</a></li><li><a href="/2022/09/14/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%B8%97%E9%80%8F/" rel="bookmark" title="永恒之蓝渗透">永恒之蓝渗透</a></li><li><a href="/2022/09/28/XSS-Challenges/" rel="bookmark" title="XSS Challenges(1-7)">XSS Challenges(1-7)</a></li><li class="active"><a href="/2022/09/29/XSS-Challenges-1/" rel="bookmark" title="XSS-Challenges(8-16)">XSS-Challenges(8-16)</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="zlmyini"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">zlmyini</p>
+  <div class="description" itemprop="description">Rise and shine</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">21</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">11</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+  
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2022/09/06/DNS%E5%9F%9F%E5%90%8D%E5%8A%AB%E6%8C%81/" title="DNS域名劫持">DNS域名劫持</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="In -python">-python</a>
+</div>
+
+    <span><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" title="python报错">python报错</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2022/09/29/XSS-Challenges-1/" title="XSS-Challenges(8-16)">XSS-Challenges(8-16)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zlmyini @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2022/09/29/XSS-Challenges-1/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
