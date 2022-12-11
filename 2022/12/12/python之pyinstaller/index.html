@@ -24,15 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="-misc" />
+  <meta name="keywords" content="-python库" />
 
 
-<link rel="canonical" href="http://example.com/2022/03/02/stage1/">
+<link rel="canonical" href="http://example.com/2022/12/12/python%E4%B9%8Bpyinstaller/">
 
 
 
   <title>
-stage1 - -CTF |
+python之pyinstaller - -python |
 Yume Shoka = 月十三</title>
 <meta name="generator" content="Hexo 5.4.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,16 +60,16 @@ Yume Shoka = 月十三</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">stage1
+  <h1 itemprop="name headline">python之pyinstaller
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2022-03-02 11:22:14">
+  <span class="item" title="Created: 2022-12-12 00:41:07">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2022-03-02T11:22:14+08:00">2022-03-02</time>
+    <time itemprop="dateCreated datePublished" datetime="2022-12-12T00:41:07+08:00">2022-12-12</time>
   </span>
 </div>
 
@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
         </ul>
       </div>
     </header>
@@ -133,12 +133,12 @@ Yume Shoka = 月十三</title>
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/CTF/" itemprop="item" rel="index" title="In -CTF"><span itemprop="name">-CTF</span></a>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/" itemprop="item" rel="index" title="In -python"><span itemprop="name">-python</span></a>
 <meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/02/stage1/">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/12/python%E4%B9%8Bpyinstaller/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -153,51 +153,19 @@ Yume Shoka = 月十三</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p><img data-src="/images/image-20220302112645521.png" alt="image-20220302112645521"></p>
-<p>下载附件打开是一张png图片：</p>
-<p><img data-src="/images/image-20220302112909580.png" alt="image-20220302112909580"></p>
-<p>先扔进stegsolve在灰色通道得到二维码:</p>
-<img data-src="/images/image-20220302113058658.png" alt="image-20220302113058658" style="zoom:33%;">
+    <p>PyInstaller其实就是把python解析器和你自己的脚本打包成一个可执行的文件，和编译成真正的机器码完全是两回事，所以千万不要指望成打包成一个可执行文件会提高运行效率，相反可能会降低运行效率，好处就是在运行者的机器上不用安装python和你的脚本依赖的库。在Linux操作系统下，它主要用的binutil工具包里面的ldd和objdump命令。</p>
+<p>PyInstaller输入你指定的的脚本，首先分析脚本所依赖的其他脚本，然后去查找，复制，把所有相关的脚本收集起来，包括Python解析器，然后把这些文件放在一个目录下，或者打包进一个可执行文件里面。</p>
+<p>需要注意的是，PyInstaller打包的执行文件，只能在和打包机器系统同样的环境下。也就是说，不具备可移植性，若需要在不同系统上运行，就必须针对该平台进行打包。</p>
+<p>pyinstaller 会在打包时把本地 python 环境中安装的所有库包都打包到生成的包中，相当于它把整个本地python环境集成起来了，形成了一个虚拟的编译环境，所以生成的exe文件会比你源代码文件合起来大得多。因此它生成的exe文件可以被其他相同操作系统但没有安装和你一样库甚至没有python环境的机器上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -w XXXXX.py -n YYYYYY -i xxx.ico --clean</span><br></pre></td></tr></table></figure>
 
 
 
-<p>打开QR扫描得到一串16进制编码：</p>
-<img data-src="/images/image-20220302113454887.png" alt="image-20220302113454887" style="zoom: 50%;">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-n  指定生成exe的名称;</span><br><span class="line">-i  如果你的主程序没有图标，可使用此为生成的exe加载图标;</span><br><span class="line">-w  如果是GUI界面，会不弹出命令行cmd窗口。如果不带这个参数，执行exe文件时会打开一个命令行窗口，显示log;</span><br><span class="line">-F  表示生成单个exe文件</span><br><span class="line">--clean 在每次编译生成exe时，清除之前的编译文件</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-<p>在线16进制转换Ascii码得到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ó</span><br><span class="line">¶&amp;jWc@s</span><br><span class="line">dZdS(cCsNddddddddg&#125;d&#125;x|D]&#125;|t|7&#125;q+W|GHdS(	NiAilipihiaiLibt(tchr(tstrtflagti((stest.pyRs</span><br><span class="line"></span><br><span class="line">N(R(((stest.pyt&lt;module&gt;s</span><br></pre></td></tr></table></figure>
-
-<p>发现有py字样，应该是python反编译，把原来的16进制编码复制下来丢进winhex保存为pyc文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">03F30D0AB6266A576300000000000000000100000040000000730D0000006400008400005A00006401005328020000006300000000030000000800000043000000734E0000006401006402006403006404006405006406006405006407006708007D00006408007D0100781E007C0000445D16007D02007C01007400007C0200830100377D0100712B00577C010047486400005328090000004E6941000000696C000000697000000069680000006961000000694C0000006962000000740000000028010000007403000000636872280300000074030000007374727404000000666C6167740100000069280000000028000000007307000000746573742E7079520300000001000000730A00000000011E0106010D0114014E280100000052030000002800000000280000000028000000007307000000746573742E707974080000003C6D6F64756C653E010000007300000000</span><br></pre></td></tr></table></figure>
-
-
-
-<p>打开winhex是这里要选择ascii hex ：</p>
-<img data-src="/images/image-20220302114027096.png" alt="image-20220302114027096" style="zoom:80%;">
-
-
-
-<p>生成pyc文件后打开python反编译软件反编译：</p>
-<img data-src="/images/image-20220302114300110.png" alt="image-20220302114300110" style="zoom:80%;">
-
-
-
-<p>会生成.pyc_dis文件：</p>
-<p><img data-src="/images/image-20220302114422234.png" alt="image-20220302114422234"></p>
-<p>用VScode打开：</p>
-<p><img data-src="/images/image-20220302114459855.png" alt="image-20220302114459855"></p>
-<p>稍微改一下：</p>
-<p><img data-src="/images/image-20220302114547716.png" alt="image-20220302114547716"></p>
-<p>运行得到flag：</p>
-<p><img data-src="/images/image-20220302114632428.png" alt="image-20220302114632428"></p>
-<p>提交通关！！！</p>
 
       <div class="tags">
-          <a href="/tags/misc/" rel="tag"><i class="ic i-tag"></i> -misc</a>
+          <a href="/tags/python%E5%BA%93/" rel="tag"><i class="ic i-tag"></i> -python库</a>
       </div>
   </div>
 
@@ -209,7 +177,7 @@ Yume Shoka = 月十三</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2022-03-02 11:50:02" itemprop="dateModified" datetime="2022-03-02T11:50:02+08:00">2022-03-02</time>
+    <time title="Modified: 2022-12-12 00:52:09" itemprop="dateModified" datetime="2022-12-12T00:52:09+08:00">2022-12-12</time>
   </span>
 </div>
 
@@ -245,7 +213,7 @@ Yume Shoka = 月十三</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/03/02/stage1/" title="stage1">http://example.com/2022/03/02/stage1/</a>
+    <a href="http://example.com/2022/12/12/python%E4%B9%8Bpyinstaller/" title="python之pyinstaller">http://example.com/2022/12/12/python之pyinstaller/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -264,22 +232,14 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2022/02/27/convert/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicliierfjj20zk0m8npd.jpg" title="convert">
+  <a href="/2022/10/28/sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexe4oykj20zk0m87ji.jpg" title="sql盲注脚本">
   <span class="type">Previous Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>convert</h3>
+  <span class="category"><i class="ic i-flag"></i> --sqli-labs</span>
+  <h3>sql盲注脚本</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyonbf9j20zk0m8e81.jpg" title="python报错">
-  <span class="type">Next Post</span>
-  <span class="category"><i class="ic i-flag"></i> -python</span>
-  <h3>python报错</h3>
-  </a>
-
     </div>
 </div>
 
@@ -299,7 +259,7 @@ Yume Shoka = 月十三</title>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
-          <li><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="bookmark" title="攻防世界刷题笔记">攻防世界刷题笔记</a></li><li><a href="/2021/11/19/simplerar/" rel="bookmark" title="simplerar(信息隐写)">simplerar(信息隐写)</a></li><li><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" rel="bookmark" title="LSB隐写">LSB隐写</a></li><li class="active"><a href="/2022/03/02/stage1/" rel="bookmark" title="stage1">stage1</a></li>
+          <li><a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" rel="bookmark" title="python爬虫-b站">python爬虫-b站</a></li><li><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" rel="bookmark" title="python报错">python报错</a></li><li class="active"><a href="/2022/12/12/python%E4%B9%8Bpyinstaller/" rel="bookmark" title="python之pyinstaller">python之pyinstaller</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="Overview">
@@ -350,12 +310,10 @@ Yume Shoka = 月十三</title>
   
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2022/02/27/convert/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -377,39 +335,30 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In --sqli-labs">--sqli-labs</a>
 </div>
 
-    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+    <span><a href="/2022/10/28/sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" title="sql盲注脚本">sql盲注脚本</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" title="python报错">python报错</a></span>
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2022/09/28/XSS-Challenges/" title="XSS Challenges(1-7)">XSS Challenges(1-7)</a></span>
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
   </li>
 
       
@@ -426,29 +375,29 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
-    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" title="win10管理员权限问题">win10管理员权限问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%9F%A5%E8%AF%86%E5%82%A8%E5%AD%98/" title="In -知识储存">-知识储存</a>
+</div>
+
+    <span><a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" title="文件头标识大全(Winhex文件分析)">文件头标识大全(Winhex文件分析)</a></span>
   </li>
 
       
@@ -465,10 +414,19 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
 </div>
 
-    <span><a href="/2022/12/12/python%E4%B9%8Bpyinstaller/" title="python之pyinstaller">python之pyinstaller</a></span>
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/10/01/Less7-10/" title="Less7~10">Less7~10</a></span>
   </li>
 
   </ul>
@@ -499,7 +457,7 @@ Yume Shoka = 月十三</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2022/03/02/stage1/',
+    path: '2022/12/12/python之pyinstaller/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
