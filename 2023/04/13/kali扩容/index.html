@@ -1,0 +1,564 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="月十三" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="月十三" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="月十三" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="-kali" />
+
+
+<link rel="canonical" href="http://example.com/2023/04/13/kali%E6%89%A9%E5%AE%B9/">
+
+
+
+  <title>
+kali扩容 - -虚拟机器 |
+Yume Shoka = 月十三</title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">kali扩容
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-04-13 11:33:40">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-04-13T11:33:40+08:00">2023-04-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitspjpbj20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclwrdwyaj20zk0m8are.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%99%A8/" itemprop="item" rel="index" title="In -虚拟机器"><span itemprop="name">-虚拟机器</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/13/kali%E6%89%A9%E5%AE%B9/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="zlmyini">
+    <meta itemprop="description" content=", Rise and shine">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="月十三">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p> kali最近用得比较频繁，做一些渗透，但开启很多工具时整个虚拟机就有点绷不住了，原因是内存和硬盘太小（默认内存2G,硬盘20GB）</p>
+<p>到虚拟机里面看：</p>
+<img data-src="/images/image-20230413114141584.png" alt="image-20230413114141584" style="zoom:80%;">
+
+<p>这个sda1快满了，sda1是指硬盘上的第一个分区，通常是一个主分区。主分区是在硬盘上创建的最基本的分区类型之一，可以被格式化为一个文件系统并挂载到Linux文件系统中，用于存储数据和文件。在Linux中，硬盘和分区都被表示为设备文件。例如，sda1设备文件的路径通常是/dev/sda1。</p>
+<p>下面进行扩容步骤操作：</p>
+<p>首先在虚拟机设置我们将内存和硬盘都重新设置过：</p>
+<img data-src="/images/image-20230413114500431.png" alt="image-20230413114500431" style="zoom: 67%;">
+
+<p>这里磁盘就是针对接下来虚拟机主分区的扩容准备，这里扩展，自己选择大小（扩展前要先关机并且之前的快照都要删除）</p>
+<p>接下来就是进入虚拟机同步物理磁盘分区大小:</p>
+<p>打开名sda的硬盘的分区编辑器（parted），对该硬盘进行分区操作步骤如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parted /dev/sda</span><br><span class="line">p</span><br><span class="line">resizepart 1</span><br></pre></td></tr></table></figure>
+
+<img data-src="/images/image-20230413114957980.png" alt="image-20230413114957980" style="zoom:67%;">
+
+<p>输入 resizepart 1，(如果有其它分区，可以选择其他的序号)，但这里只能选择最右边的分区，因为文件系统是向为未分配的分区扩容，如果比如你有sda2、sda3，那你扩容sda1，它会向右扩容从而覆盖到sda2/sda3分区，是不允许的：</p>
+<img data-src="/images/image-20230413124529475.png" alt="image-20230413124529475" style="zoom:80%;">
+
+<p>如上图，我这里是因为直接扩容了sda2，给了它40GB。但实际sda2没有挂载，也就并没有实际分配到，所以后面已用和未用都没有数据，所以要扩容一个分区，一定要它已经挂载，下面的步骤是直接扩容sda1,删除了sda2。</p>
+<p>如果你sda2、3没有什么东西也可以卸载，首先先找到它们的挂载点:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo lsblk -o NAME,FSTYPE,MOUNTPOINT</span><br></pre></td></tr></table></figure>
+
+<p>然后先先卸载：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo umount /dev/sda*</span><br></pre></td></tr></table></figure>
+
+<p>卸载完成后如果查看挂载点还有它们，有以下两种情况：</p>
+<p>1、被 /etc/fstab文件定义为自动挂载（sda3）这种情况需要编辑/etc/fstab文件，将含有这个错误的分区内容删除或注释：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p>在编辑器中，找到与sda3相关的行，将其删除或在行的前面添加“#”字符以注释掉该行。然后保存文件并退出编辑器，然后重启即可。</p>
+<p>2、可能是未分配的磁盘空间或被误认为是分区（sda2）：</p>
+<p>先检查sda2分区的情况：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l /dev/sda</span><br></pre></td></tr></table></figure>
+
+<p>找到关于sda2的条目，如果它的大小为0或有一些其他的错误，将其删除：</p>
+<p>打开fdisk:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk /dev/sda</span><br></pre></td></tr></table></figure>
+
+<pre><code>输入 &#39;p&#39; 命令来打印磁盘分区信息，确认sda2分区的编号
+输入 &#39;d&#39; 命令来删除分区，然后输入要删除的分区编号，例如“2”
+最后输入 &#39;w&#39; 命令来保存更改并退出fdisk。
+</code></pre>
+<p>完成上述后，更新磁盘分区表并重新读取分区表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo partprobe</span><br></pre></td></tr></table></figure>
+
+
+
+<p>回到主线，resizepart 1后输入 yes，End 这里填你想扩容大小，因为sda1分区开始是1M左右，结束多大大致就是扩容的大小（这里已经扩容过了显示的是我扩容的大小60G）最后再输入 q (quit) 退出</p>
+<img data-src="/images/image-20230413120421370.png" alt="image-20230413120421370" style="zoom:80%;">
+
+<p>退出之后，用 df -h 命令看发现没有任何改变，但是使用 lsblk 命令会发现已经扩容成功了，因为这只是 block device 容量变大了，还没有反映到 file system 中</p>
+<p>需要使用 resize2fs 命令更新:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resize2fs /dev/sda1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后用df -h 和 lsblk查看都显示扩容成功：</p>
+<p><img data-src="/images/image-20230413120730983.png" alt="image-20230413120730983"></p>
+<p><img data-src="/images/image-20230413120749812.png" alt="image-20230413120749812"></p>
+<p>总结一些设计到的命令：</p>
+<pre><code>fdisk命令：用于磁盘分区，包括创建、删除、查看磁盘分区信息等。
+
+mkfs命令：用于创建文件系统。
+
+mount命令：用于挂载文件系统。
+
+umount命令：用于卸载已挂载的文件系统。
+
+resize2fs命令：用于扩大或缩小ext2、ext3或ext4文件系统的大小。
+
+fsck命令：用于检查和修复文件系统。
+
+parted命令：用于磁盘分区编辑器，包括对磁盘进行分区、删除、查看分区等操作。
+
+lsblk命令: 列出块设备信息。
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lsblk -o NAME,FSTYPE,MOUNTPOINT命令用于显示当前系统中所有块设备（包括硬盘和分区）的名称、文件系统类型和挂载点。</span><br><span class="line"></span><br><span class="line">du -sh *: 列出当前目录下所有文件和子目录的大小，单位是人类易读的格式（如KB、MB、GB）。</span><br><span class="line"></span><br><span class="line">df -h: 列出文件系统的磁盘空间使用情况，包括已用空间、可用空间、使用率等信息，单位也是人类易读的格式。</span><br><span class="line"></span><br><span class="line">resize2fs /dev/sda1: 该命令用于扩展 ext2, ext3 或 ext4 文件系统所占用的分区大小。</span><br><span class="line"></span><br><span class="line">parted /dev/sda: 该命令用于打开磁盘分区工具 parted 来对指定的磁盘进行分区操作。</span><br><span class="line"></span><br><span class="line">fdisk -l: 该命令用于列出所有磁盘的分区信息，包括磁盘编号、分区编号、分区类型、分区大小等信息。</span><br><span class="line"></span><br><span class="line">fdisk -l /dev/sda: 该命令用于列出磁盘 /dev/sda 的分区信息。</span><br><span class="line"></span><br><span class="line">mount /dev/sda3 ~/mnt: 该命令用于将分区 /dev/sda3 挂载到目录 ~/mnt 上，使得该分区的内容可以在该目录下被访问。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这些命令对Kali Linux系统中的磁盘和分区进行创建、编辑、调整和修复等操作。这些命令在日常管理和维护系统时非常有用。</p>
+
+      <div class="tags">
+          <a href="/tags/kali/" rel="tag"><i class="ic i-tag"></i> -kali</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2023-04-13 13:05:41" itemprop="dateModified" datetime="2023-04-13T13:05:41+08:00">2023-04-13</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="zlmyini WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="zlmyini Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="zlmyini PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>zlmyini <i class="ic i-at"><em>@</em></i>月十三
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://example.com/2023/04/13/kali%E6%89%A9%E5%AE%B9/" title="kali扩容">http://example.com/2023/04/13/kali扩容/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicmnywqgpj20zk0m8dwx.jpg" title="在线编译">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>在线编译</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2023/04/13/kali%E6%89%A9%E5%AE%B9/" rel="bookmark" title="kali扩容">kali扩容</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="zlmyini"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">zlmyini</p>
+  <div class="description" itemprop="description">Rise and shine</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">26</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">8</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+  
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="In -python">-python</a>
+</div>
+
+    <span><a href="/2022/12/12/python%E4%B9%8Bpyinstaller/" title="python之pyinstaller">python之pyinstaller</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2022/09/14/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%B8%97%E9%80%8F/" title="永恒之蓝渗透">永恒之蓝渗透</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" title="在线编译">在线编译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/04/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="密码学几种算法代码实现">密码学几种算法代码实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/mysql/" title="In -mysql">-mysql</a>
+</div>
+
+    <span><a href="/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/" title="python连接mysql图书管理">python连接mysql图书管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2022/09/29/XSS-Challenges-1/" title="XSS-Challenges(8-16)">XSS-Challenges(8-16)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">zlmyini @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/04/13/kali扩容/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
