@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
         </ul>
       </div>
     </header>
@@ -153,20 +153,20 @@ Yume Shoka = 月十三</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h2 id="核心功能代码"><a href="#核心功能代码" class="headerlink" title="核心功能代码"></a>核心功能代码</h2><p><img src="/images/image-20220110154515548.png" alt="image-20220110154515548"></p>
+    <h2 id="核心功能代码"><a href="#核心功能代码" class="headerlink" title="核心功能代码"></a>核心功能代码</h2><p><img data-src="/images/image-20220110154515548.png" alt="image-20220110154515548"></p>
 <p>首先对请求回来的源代码文件进行json格式处理，用loads的方法将数据转换为字典格式，因为我们需要的数据部分在源码上就是以键值的形式的，而且类似data，replies等这些数据在源码中都是对应了每一个评论信息，也就是说网页在储存这些信息的时候是按特定的格式来储存的，所以可以找共性，抓数据。这里都是应用字典来找到我们需要的评论信息，最后都保存在comment列表中，因为后面我们是要保存为CSV文件，所以用列表可以省去后续的复杂操作。</p>
-<p><img src="/images/image-20220110154528575.png" alt="image-20220110154528575"></p>
+<p><img data-src="/images/image-20220110154528575.png" alt="image-20220110154528575"></p>
 <p>这个模块就是生成CSV文件。Page是评论网页数，最后导入到本地生成文件时发现一页保存了21个用户的评论信息。这里的dict是列表，在后面调用函数时就是前面get_data()函数返回的comments。通过遍历列表找到用户名、点赞数、评论时间、评论内容并添加到rows行列表中。最后就用CSV的方法写入文件。但这个函数参数中的page我们也知道，调用一次这个函数是爬取了一页的评论内容，那么该文件就不能用w覆盖写的方法，用a添加写。同时文件行头我们是不需要每次调用都进行写入，所以做一个判断就（page==1）就OK了。</p>
-<p><img src="/images/image-20220110154540281.png" alt="image-20220110154540281"></p>
+<p><img data-src="/images/image-20220110154540281.png" alt="image-20220110154540281"></p>
 <p>核心就是正则表达式了，通过观察网页源码中一类信息的几个该信息前后的字符共同点，确定正则匹配式，然后在get下来的文件里查找，re.S：可以使得“.”可以匹配到换行符；</p>
 <p>(.*?) :惰性匹配，匹配到的是到其后面第一个对应字符前面的内容，也就是我们要的数据。</p>
-<h3 id="评论信息数据可视化"><a href="#评论信息数据可视化" class="headerlink" title="评论信息数据可视化"></a>评论信息数据可视化</h3><p><img src="/images/image-20220110154607268.png" alt="image-20220110154607268"></p>
+<h3 id="评论信息数据可视化"><a href="#评论信息数据可视化" class="headerlink" title="评论信息数据可视化"></a>评论信息数据可视化</h3><p><img data-src="/images/image-20220110154607268.png" alt="image-20220110154607268"></p>
 <h2 id="遇到的主要问题及解决思路"><a href="#遇到的主要问题及解决思路" class="headerlink" title="遇到的主要问题及解决思路"></a><strong>遇到的主要问题及解决思路</strong></h2><p>1、最早看了一些基础的爬虫代码基础，然后就直接requests应用了,做测试的时候打印输出返回源码，一开始有源码输出，但随着运行次数增加，后面就不行了。</p>
 <p>解决方法：因为我们是自动化脚本，不是浏览器发送的请求，服务器后台可以看到我们是什么对象，所以我们要进行请求伪装，通过“User-Agent”代理伪装，内容就在网络块随意一个文件标头找到：</p>
-<p><img src="/images/image-20220110154948715.png" alt="image-20220110154948715"> </p>
+<p><img data-src="/images/image-20220110154948715.png" alt="image-20220110154948715"> </p>
 <p>2、一开始做的时候直接打开网页就fn+f12然后在我选的爬取的视频下方评论找对应的元素，找到后就写了相应的正则，代码完成后运行却发现输出为空，根本就没有东西。</p>
 <p>解决方法：</p>
-<p>不得不说，这坑是真难受。找了那么久写正则，结果啥都没有，百度也没找到类似问题，最后还是在别人博客的代码的url里看到端倪，原来b站评论的源码是有专门的URL的，要找到对应的视频aid。最后就是这个格式：<a target="_blank" rel="noopener" href="https://api.bilibili.com/x/v2/reply?pn=+">https://api.bilibili.com/x/v2/reply?pn=+</a> str(page)+&amp;type=1&amp;oid=379998685&amp;sort=2，这里oid的值就是你要的视频的aid值。</p>
+<p>不得不说，这坑是真难受。找了那么久写正则，结果啥都没有，百度也没找到类似问题，最后还是在别人博客的代码的url里看到端倪，原来b站评论的源码是有专门的URL的，要找到对应的视频aid。最后就是这个格式：<span class="exturl" data-url="aHR0cHM6Ly9hcGkuYmlsaWJpbGkuY29tL3gvdjIvcmVwbHk/cG49Kw==">https://api.bilibili.com/x/v2/reply?pn=+</span> str(page)+&amp;type=1&amp;oid=379998685&amp;sort=2，这里oid的值就是你要的视频的aid值。</p>
 <p>3、数据写入文件时一直乱码</p>
 <p>解决方法:原因是utf-8编码写入CSV格式时会产生乱码，写入文件时把utf-8</p>
 <p>改成utf_8_sig</p>
@@ -254,7 +254,7 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm07ih54j20zk0m84qp.jpg" title="文件头标识大全(Winhex文件分析)">
+  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm0n457cj20zk0m8e81.jpg" title="文件头标识大全(Winhex文件分析)">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> -知识储存</span>
   <h3>文件头标识大全(Winhex文件分析)</h3>
@@ -264,7 +264,7 @@ Yume Shoka = 月十三</title>
     <div class="item right">
       
 
-  <a href="/2022/02/27/convert/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclffsa1cj20zk0m811l.jpg" title="convert">
+  <a href="/2022/02/27/convert/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewf5l51j20zk0m8b29.jpg" title="convert">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>convert</h3>
@@ -368,6 +368,25 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
@@ -378,9 +397,20 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/mysql/" title="In -mysql">-mysql</a>
 </div>
 
-    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+    <span><a href="/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/" title="python连接mysql图书管理">python连接mysql图书管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
   </li>
 
       
@@ -397,10 +427,9 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
 </div>
 
-    <span><a href="/2022/12/12/python%E4%B9%8Bpyinstaller/" title="python之pyinstaller">python之pyinstaller</a></span>
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
   </li>
 
       
@@ -409,7 +438,7 @@ Yume Shoka = 月十三</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
+    <span><a href="/2022/07/04/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="密码学几种算法代码实现">密码学几种算法代码实现</a></span>
   </li>
 
       
@@ -418,36 +447,7 @@ Yume Shoka = 月十三</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" title="在线编译">在线编译</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2023/01/14/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E8%BF%94%E5%9B%9E%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98/" title="报错注入返回限制问题">报错注入返回限制问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
-</div>
-
-    <span><a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" title="python爬虫-b站">python爬虫-b站</a></span>
+    <span><a href="/2023/01/14/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BD%91%E5%9D%80%E5%B7%A5%E5%85%B7/" title="渗透测试网址工具">渗透测试网址工具</a></span>
   </li>
 
       
@@ -457,7 +457,7 @@ Yume Shoka = 月十三</title>
 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
 </div>
 
-    <span><a href="/2022/09/28/XSS-Challenges/" title="XSS Challenges(1-7)">XSS Challenges(1-7)</a></span>
+    <span><a href="/2023/04/21/sqlmap%E8%AF%BB%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="sqlmap读取服务器">sqlmap读取服务器</a></span>
   </li>
 
   </ul>

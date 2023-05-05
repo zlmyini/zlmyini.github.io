@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclxfdlttj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexbei4hj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclimtf7dj20zk0m8qav.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jp"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
         </ul>
       </div>
     </header>
@@ -155,22 +155,22 @@ Yume Shoka = 月十三</title>
 
     <p> kali最近用得比较频繁，做一些渗透，但开启很多工具时整个虚拟机就有点绷不住了，原因是内存和硬盘太小（默认内存2G,硬盘20GB）</p>
 <p>到虚拟机里面看：</p>
-<img src="/images/image-20230413114141584.png" alt="image-20230413114141584" style="zoom:80%;">
+<img data-src="/images/image-20230413114141584.png" alt="image-20230413114141584" style="zoom:80%;">
 
 <p>这个sda1快满了，sda1是指硬盘上的第一个分区，通常是一个主分区。主分区是在硬盘上创建的最基本的分区类型之一，可以被格式化为一个文件系统并挂载到Linux文件系统中，用于存储数据和文件。在Linux中，硬盘和分区都被表示为设备文件。例如，sda1设备文件的路径通常是/dev/sda1。</p>
 <p>下面进行扩容步骤操作：</p>
 <p>首先在虚拟机设置我们将内存和硬盘都重新设置过：</p>
-<img src="/images/image-20230413114500431.png" alt="image-20230413114500431" style="zoom: 67%;">
+<img data-src="/images/image-20230413114500431.png" alt="image-20230413114500431" style="zoom: 67%;">
 
 <p>这里磁盘就是针对接下来虚拟机主分区的扩容准备，这里扩展，自己选择大小（扩展前要先关机并且之前的快照都要删除）</p>
 <p>接下来就是进入虚拟机同步物理磁盘分区大小:</p>
 <p>打开名sda的硬盘的分区编辑器（parted），对该硬盘进行分区操作步骤如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parted /dev/sda</span><br><span class="line">p</span><br><span class="line">resizepart 1</span><br></pre></td></tr></table></figure>
 
-<img src="/images/image-20230413114957980.png" alt="image-20230413114957980" style="zoom:67%;">
+<img data-src="/images/image-20230413114957980.png" alt="image-20230413114957980" style="zoom:67%;">
 
 <p>输入 resizepart 1，(如果有其它分区，可以选择其他的序号)，但这里只能选择最右边的分区，因为文件系统是向为未分配的分区扩容，如果比如你有sda2、sda3，那你扩容sda1，它会向右扩容从而覆盖到sda2/sda3分区，是不允许的：</p>
-<img src="/images/image-20230413124529475.png" alt="image-20230413124529475" style="zoom:80%;">
+<img data-src="/images/image-20230413124529475.png" alt="image-20230413124529475" style="zoom:80%;">
 
 <p>如上图，我这里是因为直接扩容了sda2，给了它40GB。但实际sda2没有挂载，也就并没有实际分配到，所以后面已用和未用都没有数据，所以要扩容一个分区，一定要它已经挂载，下面的步骤是直接扩容sda1,删除了sda2。</p>
 <p>如果你sda2、3没有什么东西也可以卸载，首先先找到它们的挂载点:</p>
@@ -202,15 +202,15 @@ Yume Shoka = 月十三</title>
 
 
 <p>回到主线，resizepart 1后输入 yes，End 这里填你想扩容大小，因为sda1分区开始是1M左右，结束多大大致就是扩容的大小（这里已经扩容过了显示的是我扩容的大小60G）最后再输入 q (quit) 退出</p>
-<img src="/images/image-20230413120421370.png" alt="image-20230413120421370" style="zoom:80%;">
+<img data-src="/images/image-20230413120421370.png" alt="image-20230413120421370" style="zoom:80%;">
 
 <p>退出之后，用 df -h 命令看发现没有任何改变，但是使用 lsblk 命令会发现已经扩容成功了，因为这只是 block device 容量变大了，还没有反映到 file system 中</p>
 <p>需要使用 resize2fs 命令更新:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resize2fs /dev/sda1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>最后用df -h 和 lsblk查看都显示扩容成功：</p>
-<p><img src="/images/image-20230413120730983.png" alt="image-20230413120730983"></p>
-<p><img src="/images/image-20230413120749812.png" alt="image-20230413120749812"></p>
+<p><img data-src="/images/image-20230413120730983.png" alt="image-20230413120730983"></p>
+<p><img data-src="/images/image-20230413120749812.png" alt="image-20230413120749812"></p>
 <p>总结一些设计到的命令：</p>
 <pre><code>fdisk命令：用于磁盘分区，包括创建、删除、查看磁盘分区信息等。
 
@@ -302,7 +302,7 @@ lsblk命令: 列出块设备信息。
     <div class="item left">
       
 
-  <a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclx29mstj20zk0m8hdt.jpg" title="在线编译">
+  <a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm0fdw5cj20zk0m8hdt.jpg" title="在线编译">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>在线编译</h3>
@@ -312,7 +312,7 @@ lsblk命令: 列出块设备信息。
     <div class="item right">
       
 
-  <a href="/2023/04/21/sqlmap%E8%AF%BB%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeubcbajj20zk0m8h1h.jpg" title="sqlmap读取服务器">
+  <a href="/2023/04/21/sqlmap%E8%AF%BB%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyhsblkj20zk0m81kx.jpg" title="sqlmap读取服务器">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> --渗透测试</span>
   <h3>sqlmap读取服务器</h3>
@@ -418,45 +418,7 @@ lsblk命令: 列出块设备信息。
 <a href="/categories/python/" title="In -python">-python</a>
 </div>
 
-    <span><a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" title="python爬虫-b站">python爬虫-b站</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2023/01/14/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%BD%91%E5%9D%80%E5%B7%A5%E5%85%B7/" title="渗透测试网址工具">渗透测试网址工具</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2023/05/05/array-intersect-uassoc/" title="array_intersect_uassoc">array_intersect_uassoc</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
-</div>
-
-    <span><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" title="python报错">python报错</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" title="win10管理员权限问题">win10管理员权限问题</a></span>
+    <span><a href="/2022/12/12/python%E4%B9%8Bpyinstaller/" title="python之pyinstaller">python之pyinstaller</a></span>
   </li>
 
       
@@ -473,26 +435,6 @@ lsblk命令: 列出块设备信息。
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%99%A8/" title="In -虚拟机器">-虚拟机器</a>
-</div>
-
-    <span><a href="/2023/04/13/kali%E6%89%A9%E5%AE%B9/" title="kali扩容">kali扩容</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
@@ -503,10 +445,66 @@ lsblk命令: 列出块设备信息。
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In --sqli-labs">--sqli-labs</a>
 </div>
 
-    <span><a href="/2022/10/28/sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" title="sql盲注脚本">sql盲注脚本</a></span>
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" title="win10管理员权限问题">win10管理员权限问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+</div>
+
+    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%99%A8/" title="In -虚拟机器">-虚拟机器</a>
+</div>
+
+    <span><a href="/2023/04/13/kali%E6%89%A9%E5%AE%B9/" title="kali扩容">kali扩容</a></span>
   </li>
 
   </ul>

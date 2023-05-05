@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -156,15 +156,15 @@ Yume Shoka = 月十三</title>
     <p>  LSB隐写是信息隐写中最为经典的类型了，LSB全称为 least significant bit，是最低有效位的意思。通常在无损压缩或无压缩的图片上实现LSB隐写。如果是JPG格式的图片，就无法使用LSB隐写，因为JPG格式的图片对像素进行了有损压缩，我们修改的信息可能会在压缩的过程中被破坏。而PNG格式图片也对像素进行了压缩，不过是无损压缩，所以PNG格式是可以使用LSB的。还有就是BMP格式，这是没有进行压缩的，所以一般就会很大，可以进行LSB隐写。在CTF的题目中，一般也是用PNG格式图片来进行对LSB隐写的考察</p>
 <p><strong>隐写术简介</strong></p>
 <p>先简单的讲讲什么是隐写。由于我们识别声音或图片的能力有限，因此稍微改动信息的某一位是不会影响我们识别声音或图片的。隐写和加密之间的相同点就是，都是需要经过特殊的处理才能获得特定的信息。它们之间的不同点简单的说就是，加密的话会是一些奇怪的字符，或数据。隐写的话，就是信息明明就在眼前，但是你却视而不见。古人的藏头诗也是隐写的一种。</p>
-<p><img src="/images/image-20211121002126646.png" alt="image-20211121002126646"></p>
+<p><img data-src="/images/image-20211121002126646.png" alt="image-20211121002126646"></p>
 <p>PNG格式图片中的像素一般由RGB三原色（红、绿、蓝）组成，每种颜色占8位，取值范围位0x00~0xFF,即有256中颜色。它一共包含256的3次方种颜色，即16777216种颜色。而人类的眼睛可以区分约1000万种不同的颜色，这就意味着人类无法区分剩下的6777216种颜色。</p>
-<p><img src="/images/2936952968-5b88d675e81b8_articlex.png"></p>
+<p><img data-src="/images/2936952968-5b88d675e81b8_articlex.png"></p>
 <p>LSB隐写修改RGB颜色分量的最低位二进制,也就是最低有效位，而人类的眼睛不会注意到这前后的变化，因此每个像素可以携带3比特的信息，并且可以进行一些隐秘信息的传输。例如将最低有效位替换为0和1，然后将7或8位一组组成新的ASCII码：</p>
-<p><img src="/images/1411706368-5b88d6c5a7fc2_articlex.png"></p>
+<p><img data-src="/images/1411706368-5b88d6c5a7fc2_articlex.png"></p>
 <p>要寻找这种LSB隐藏痕迹，StegSolve这个工具可以辅助我们分析。</p>
-<img src="/images/image-20211121003659351.png" alt="image-20211121003659351" style="zoom:67%;">
+<img data-src="/images/image-20211121003659351.png" alt="image-20211121003659351" style="zoom:67%;">
 
-<img src="/images/image-20211121003752808.png" alt="image-20211121003752808" style="zoom:67%;">
+<img data-src="/images/image-20211121003752808.png" alt="image-20211121003752808" style="zoom:67%;">
 
 
       <div class="tags">
@@ -235,7 +235,7 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2021/11/19/simplerar/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giph47e9vtj20zk0m8x6l.jpg" title="simplerar(信息隐写)">
+  <a href="/2021/11/19/simplerar/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuv0socj20zk0m8qes.jpg" title="simplerar(信息隐写)">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> -CTF</span>
   <h3>simplerar(信息隐写)</h3>
@@ -245,7 +245,7 @@ Yume Shoka = 月十三</title>
     <div class="item right">
       
 
-  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclh3brzpj20zk0m8ann.jpg" title="文件头标识大全(Winhex文件分析)">
+  <a href="/2021/11/21/%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A0%87%E8%AF%86%E5%A4%A7%E5%85%A8/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevarprfj20zk0m8npd.jpg" title="文件头标识大全(Winhex文件分析)">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> -知识储存</span>
   <h3>文件头标识大全(Winhex文件分析)</h3>
@@ -348,29 +348,29 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/sqli-labs/" title="In --sqli-labs">--sqli-labs</a>
 </div>
 
-    <span><a href="/2022/10/28/sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" title="sql盲注脚本">sql盲注脚本</a></span>
+    <span><a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" title="在线编译">在线编译</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
 </div>
 
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+    <span><a href="/2021/09/30/Less-5-6/" title="Less 5,6">Less 5,6</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
+<a href="/categories/python/" title="In -python">-python</a>
 </div>
 
-    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+    <span><a href="/2022/03/18/python%E6%8A%A5%E9%94%99/" title="python报错">python报错</a></span>
   </li>
 
       
@@ -387,9 +387,10 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
 </div>
 
-    <span><a href="/2023/02/08/%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%AF%91/" title="在线编译">在线编译</a></span>
+    <span><a href="/2022/09/14/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%B8%97%E9%80%8F/" title="永恒之蓝渗透">永恒之蓝渗透</a></span>
   </li>
 
       
@@ -399,26 +400,6 @@ Yume Shoka = 月十三</title>
 </div>
 
     <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2022/09/29/XSS-Challenges-1/" title="XSS-Challenges(8-16)">XSS-Challenges(8-16)</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/CTF/" title="In -CTF">-CTF</a>
-</div>
-
-    <span><a href="/2022/03/02/stage1/" title="stage1">stage1</a></span>
   </li>
 
       
@@ -435,10 +416,28 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="In -python">-python</a>
 </div>
 
-    <span><a href="/2022/01/10/python%E7%88%AC%E8%99%AB-b%E7%AB%99/" title="python爬虫-b站">python爬虫-b站</a></span>
+    <span><a href="/2022/02/27/convert/" title="convert">convert</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2022/07/04/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="密码学几种算法代码实现">密码学几种算法代码实现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2023/04/21/sqlmap%E8%AF%BB%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="sqlmap读取服务器">sqlmap读取服务器</a></span>
   </li>
 
   </ul>

